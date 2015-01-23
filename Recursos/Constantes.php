@@ -8,7 +8,7 @@ class Constantes
 	const Password = '';
 	const DataBase = 'Base_Tienda';
 	//Rutas
-	const Path = '/Nuevo';
+	const Path = '/SGPIP';
 }
 
 ?>
