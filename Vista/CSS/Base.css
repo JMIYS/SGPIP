@@ -9,8 +9,8 @@ body
 a
 {	
 	font-family: Open Sans, Arial, Helvetica, sans-serif;
-	color: #909090;
-	text-decoration:none; 
+	color: #0090D9;
+	text-decoration: none;
 }
 
 ul
@@ -21,29 +21,41 @@ ul
 /*-------------HEADER-------------*/
 header
 {
-	height: 45px;
-	background-color: #E7E8F0;
+	height: 50px;
+	background-color: #FFFFFF;
 	color: #787878;
-	border-bottom: 1px solid #CBCBD9;
 	overflow: hidden;
 } 
 
-#boton_menu
+.l
 {
-	width: 45px;
-	height: 45px;
-	background-color: #3D3C41;
 	float: left;
 }
 
-#boton_menu > span
+.r
 {
-	color: #ED5F48;
+	float: right;
+}
+
+.boton_menu
+{
+	width: 50px;
+	height: 50px;
+}
+
+.boton_menu > span
+{
+	color: #4C5264;
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 20px;
-	padding-top: 9px;
+	padding-top: 12px;
+}
+
+.boton_menu > span:hover
+{
+	color: #6C6D71;
 }
 
 
@@ -51,7 +63,7 @@ header
 {
 	border-collapse: collapse;
 	float: right;
-	height: 45px;
+	height: 50px;
 }
 
 #box_user a
@@ -63,7 +75,7 @@ header
 {
 	font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;	
 	display: table-cell;
-	height: 45px;
+	height: 50px;
 	padding: 0 15px;
 	color: #737278;
 }
@@ -75,27 +87,27 @@ header
 
 #user_name>span
 {
-	height: 45px;
+	height: 40px;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 #portrait
 {
-	height: 35px;
-	width: 35px;
+	height: 30px;
+	width: 30px;
 	overflow: hidden;
 	display: inline-block;
 	-moz-border-radius: 50px;
 	border-radius: 50px;
 	-webkit-border-radius: 50px;
-	margin-top: 5px;
+	margin-top: 10px;
 }
 
 #portrait>img
 {
-	height: 35px;
-	width: 35px;
+	height: 30px;
+	width: 30px;
 }
 
 #mensaje_number
@@ -116,7 +128,7 @@ header
 #Centro_Box
 {	
 	display: block;
-	background-color: #3D3D3D;
+	background-color: #22262E;
 }
 
 #Contenido_Box
@@ -128,7 +140,7 @@ header
 
 #Contenido
 {
-	background-color: #F9F9FB;
+	background-color: #E5E9EC;
 	display: table;
 	width: 100%;
 }
@@ -140,7 +152,7 @@ header
 
 #end_contenido
 {
-	min-height: calc(100vh - 116px);
+	min-height: calc(100vh - 120px);
 	padding: 20px;
 }
 
@@ -161,20 +173,33 @@ header
 }
 
 /*-------------ASIDE-------------*/
+#titulo_empresa
+{
+	height: 50px;
+}
 
 #Aside
 {
 	width: 240px;
-	background-color: #3D3C41;
+	background-color: #1B1E24;
 	display: block;
 	float: left;
 	overflow: hidden;
+	color: #FFFFFF;
+	height: 100vh;
+
 	-webkit-transition:300ms linear;
 	-moz-transition:300ms linear;
 	-o-transition:300ms linear;
 	-ms-transition:300ms linear;
 	transition:300ms linear;
 }
+/*
+#panelbar
+{
+	min-height: calc(100vh - 120px);
+}
+*/
 
 /*-------------------TITULO-------------------*/
 
@@ -182,7 +207,7 @@ header
 /*-------------------FOOTER-------------------*/
 footer
 {
-	background-color: #F9F9FB;
+	background-color: #E5E9EC;
 	line-height: 20px;
 	padding: 5px 10px;
 }
