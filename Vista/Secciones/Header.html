@@ -1,23 +1,29 @@
 <header>
-	<a href="javascript:void(0)" onclick="slide_menu();">
+	<a href="javascript:void(0);" onclick="slide_menu();">
 		<div class="boton_menu l">
 			<span><i class="fa fa-bars"></i></span>	
 		</div>	
 	</a>
-	<a href="javascript:void(0)" onclick="">
-		<div class="boton_menu l">
+
+	<a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">						
+		<div class="boton_menu">
 			<span><i class="fa fa-cog"></i></span>	
 		</div>	
 	</a>
-	<a href="javascript:void(0)" onclick="">
-		<div class="boton_menu r">
-			<span><i class="fa fa-cog"></i></span>	
-		</div>	
-	</a>
+	<ul id="menu_rigth_top" class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+      <li><a href="#">Mi Cuenta</a>
+      </li>
+      <li><a href="#">Mi Organismo</a>
+      </li>     
+      <li class="divider"></li>                
+      <li><a href="#"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Salir</a></li>
+   </ul>
+
+
 	<div id="box_user">
 		<a href="javascript:void(0)" onclick="slide_user();">
 			<div id="user_name">
-				<span>{nombre_usuario}&nbsp;&nbsp;</span>		
+				<div id="text_name"><span>{nombre_usuario}</span></div>						
 				<div id="portrait">
 					<img src="{elemento_ruta}/Vista/Imagenes/print-bipolar5.jpg">
 				</div>	

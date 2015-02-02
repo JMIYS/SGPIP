@@ -71,12 +71,29 @@ header
 	vertical-align:middle;
 }
 
+#text_name
+{
+	display: inline-block;
+	max-width: 130px;
+	height: 50px;
+	vertical-align: top;
+	overflow: hidden;
+    text-overflow:ellipsis;
+    padding-right: 5px;
+}
+
+#text_name > span
+{
+	white-space: nowrap ;
+	line-height: 50px;
+}
+
 #user_name
 {
 	font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;	
 	display: table-cell;
 	height: 50px;
-	padding: 0 15px;
+	/*padding-right: 12px;*/
 	color: #737278;
 }
 
@@ -85,12 +102,7 @@ header
 
 }
 
-#user_name>span
-{
-	height: 40px;
-	display: inline-block;
-	vertical-align: middle;
-}
+
 
 #portrait
 {
@@ -124,6 +136,41 @@ header
 	font-size: 12px;
 	padding: 0 4px;
 }
+
+#menu_rigth_top
+{
+	top: 43px;
+	right: 9px;
+}
+
+#menu_rigth_top:before
+{
+	position: absolute;
+	top: -7px;
+	right: 9px;
+	display: inline-block;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #CCC;
+	border-left: 7px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+	content: '';
+
+}
+
+#menu_rigth_top:after
+{
+	position: absolute;
+	top: -6px;
+	right: 10px;
+	display: inline-block;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid white;
+	border-left: 6px solid transparent;
+	content: '';
+}
+
+
+
 /*-------------------CENTRO-------------------*/
 #Centro_Box
 {	
@@ -141,18 +188,14 @@ header
 #Contenido
 {
 	background-color: #E5E9EC;
-	display: table;
 	width: 100%;
 }
 
 #contenido_one
 {	
-	display: table-cell;
-}
-
-#end_contenido
-{
-	min-height: calc(100vh - 120px);
+	min-height: calc(100vh - 50px);
+	min-height: -webkit-calc(100vh - 50px);
+	min-height:: -moz-calc(100vh - 50px); 
 	padding: 20px;
 }
 
@@ -161,8 +204,11 @@ header
 #user_menu
 {
 	width: 0px;
-	background-color: #F1F1F9;
-	display: table-cell;	
+	min-height: calc(100vh - 50px);
+	min-height: -webkit-calc(100vh - 50px);
+	min-height:: -moz-calc(100vh - 50px); 
+	position: absolute;
+	background-color: #F1F1F9;	
 	border-left: 1px solid #E7E6EB;
 	overflow: hidden;
 	-webkit-transition:300ms linear;
@@ -170,6 +216,8 @@ header
 	-o-transition:300ms linear;
 	-ms-transition:300ms linear;
 	transition:300ms linear;
+	top: 50px;
+	right: 0;
 }
 
 /*-------------ASIDE-------------*/
@@ -180,7 +228,7 @@ header
 
 #Aside
 {
-	width: 240px;
+	width: 0px;
 	background-color: #1B1E24;
 	display: block;
 	float: left;
@@ -210,5 +258,6 @@ footer
 	background-color: #E5E9EC;
 	line-height: 20px;
 	padding: 5px 10px;
+	margin-top: 20px;
 }
 
