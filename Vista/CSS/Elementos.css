@@ -1,0 +1,24 @@
+.Box_1
+{
+	clear: both;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.Box_1 > .Tit
+{
+	padding: 15px;
+	color: #282323!important;
+	background-color: #ffffff;
+	margin-bottom: 0px;
+	border: 1px solid #dddddd;
+	border-bottom: 0px;
+}
+
+.Box_1 > .Cont
+{
+	background-color: #ffffff;
+	padding: 15px;
+	border: 1px solid #dddddd;
+	color: #6f7b8a;
+}
