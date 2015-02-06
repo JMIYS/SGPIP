@@ -101,12 +101,20 @@ abstract class ControladorBase
         return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $vista);
     }
 
-    
+    public function CargarTitulo($icono='', $principal='', $secundario='', $decripcion='')
+    {
+        $titulo = file_get_contents('Vista/Secciones/Titulo.html');
+        $diccionario_titulo = array('{Titulo_Icono}'=>$icono,   
+                                      '{Titulo_Princial}'=>$principal,                                   
+                                      '{Titulo_Secundario}'=>$secundario,
+                                      '{Titulo_Descripcion}'=>$decripcion); 
+        return str_replace(array_keys($diccionario_titulo), array_values($diccionario_titulo), $titulo);
+    }
 
     public function CargarAside($uno='', $dos='')
     {
         $aside = file_get_contents('Vista/Secciones/Aside.html');
-
+        $datos = $this->Login->ListarPrivilegios();
         //$datos = $this->Login->ListarPrivilegios();
         $base="<li".(($uno == "Inicio") ? " class='k-state-active el_seleccionado' ":"")."><a href='".Constantes::Path."/Inicio/Principal' ><i class='fa fa-home'></i>&nbsp;Inicio".(($uno == "Inicio") ? "<span class='prin_seleccionado'></span>":"")."</a></li>";
         $principal='';
