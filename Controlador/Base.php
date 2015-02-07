@@ -114,8 +114,8 @@ abstract class ControladorBase
     public function CargarAside($uno='', $dos='')
     {
         $aside = file_get_contents('Vista/Secciones/Aside.html');
-
         $datos = $this->Login->ListarPrivilegios();
+        //$datos = $this->Login->ListarPrivilegios();
         $base="<li".(($uno == "Inicio") ? " class='k-state-active el_seleccionado' ":"")."><a href='".Constantes::Path."/Inicio/Principal' ><i class='fa fa-home'></i>&nbsp;Inicio".(($uno == "Inicio") ? "<span class='prin_seleccionado'></span>":"")."</a></li>";
         $principal='';
 
