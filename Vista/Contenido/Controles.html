@@ -1,0 +1,480 @@
+<div class="Bloque">
+	<h2>Controles Basicos</h2>
+	<div class="Secciones">
+		<h4>Input</h4>
+		<div class="Division Text">
+			<div class="control-group">
+				<label>Texto</label>
+				<Input type="text" class="form-control" name="nombre" placeholder="Nombre" maxlength="20"/>
+				<span class="help-block"></span>
+			</div>
+			<div class="control-group">
+				<label>Numero & Decimal</label>
+				<input type="text" class="form-control" id="someID_defaults">
+				<span class="help-block"></span>
+			</div>
+			<div class="control-group">
+				<label>Moneda</label>
+				<input type="text" class="form-control" id="someID" data-a-sign="S/. ">
+				<span class="help-block"></span>
+			</div>
+			<script type="text/javascript">
+				jQuery(function($) {
+					$('#someID_defaults').autoNumeric('init');    
+					$('#someID').autoNumeric('init');  
+				});
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<label>TEXTO</label>
+					<pre>
+&lt;div class="control-group""&gt;
+  &lt;input type="text" class="form-control" name="nombre"/&gt;
+  &lt;span class="help-block"&gt;&lt;/span&gt;
+&lt;/div&gt;
+					</pre>
+					<label>NUMERO & DECIMAL</label>
+					<pre>
+&lt;div class="control-group""&gt;
+  &lt;input type="text" class="form-control" id="someID_defaults"/&gt;
+  &lt;span class="help-block"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  jQuery(function($) {
+    $('#someID_defaults').autoNumeric('init');    
+  });
+&lt;/script&gt;
+					</pre>
+					<label>MONEDA</label>
+					<pre>
+&lt;div class="control-group""&gt;
+  &lt;input type="text" class="form-control" id="someID" data-a-sign="S/. "/&gt;
+  &lt;span class="help-block"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  jQuery(function($) {
+    $('#someID').autoNumeric('init');    
+  });
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>Botones</h4>
+		<div class="Division">
+			<button type="button" class="btn btn-default">Button 1</button>
+			<button type="button" class="btn btn-info">Button 2</button>
+			<button type="button" class="btn btn-primary">Button 3</button>
+			<button type="button" class="btn btn-success">Button 4</button>
+			<div class="Seccion-Code">
+				<code>
+					<pre>
+&lt;button type="button" class="btn btn-default"&gt;Button 1&lt;/button&gt;
+&lt;button type="button" class="btn btn-info"&gt;Button 2&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary"&gt;Button 3&lt;/button&gt;
+&lt;button type="button" class="btn btn-success"&gt;Button 4&lt;/button&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>DateTime</h4>
+		<div class="Division">
+            <label>Date</label>
+            <div class="input-group date" id="datepicker">
+			 	<input type="text" class="form-control">
+			 	<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+			</div>
+			<label>DateTime</label>
+			<div class="form-group">
+                <div class='input-group' id='datetimepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <label>Date Range</label>
+            <div class="input-daterange input-group" id="datepickerange">
+			    <input type="text" class="input-sm form-control" name="start" />
+			    <span class="input-group-addon">to</span>
+			    <input type="text" class="input-sm form-control" name="end" />
+			</div>
+			<script type="text/javascript">
+			    $('#datetimepicker').datetimepicker();
+			    $('#datepicker').datepicker({
+			    	 language: "es"
+			    });
+			    $('.input-daterange').datepicker({
+			    	 language: "es"
+			    });
+			</script>
+            <div class="Seccion-Code">
+				<code>
+					<label>DATE</label>
+					<pre>
+&lt;div class='input-group date' id='datepicker'&gt;
+  &lt;input type='text' class=&quot;form-control&quot; /&gt;
+  &lt;span class=&quot;input-group-addon&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-th&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#datepicker').datepicker();
+&lt;/script&gt;						
+					</pre>
+					<label>DATETIME</label>
+					<pre>
+&lt;div class='input-group' id='datetimepicker'&gt;
+  &lt;input type='text' class=&quot;form-control&quot; /&gt;
+  &lt;span class=&quot;input-group-addon&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-calendar&quot;&gt;&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#datetimepicker').datetimepicker();
+&lt;/script&gt;
+					</pre>
+					<label>DATE RANGE</label>
+					<pre>
+&lt;div class=&quot;input-daterange input-group&quot; id='datepickerange'&gt;
+  &lt;input type='text' class=&quot;input-sm form-control&quot; name='start'/&gt;
+  &lt;span class=&quot;input-group-addon&quot;&gt;to&lt;/span&gt;
+  &lt;input type='text' class=&quot;input-sm form-control&quot; name='end'/&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#datetimepicker').datetimepicker();
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>			
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>AutoComplete</h4>
+		<div class="Division">
+			<input class="form-control" name="query" id="query" placeholder="Empieza a escribir algo para buscar..." type="text"> 
+			<script type="text/javascript">
+				$('#query').typeahead({        
+				        local: ['alpha','allpha2','alpha3','bravo','charlie','delta','epsilon','gamma','zulu']
+				});
+				$('.tt-query').css('background-color','#fff');     
+			</script> 
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;input type='text' class=&quot;form-control&quot; name='query' id="query" placeholder="Empieza a escribir algo para buscar..."/&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#query').typeahead({        
+    local: ['alpha','allpha2','alpha3','bravo','charlie','delta','epsilon','gamma','zulu']
+  });
+  $('.tt-query').css('background-color','#fff');  
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>RadioButton & CheckBox</h4>
+		<div class="Division Check">
+			<ul>
+				<li><input type="checkbox"><strong>Checkbox 1</strong></li>
+				<li><input type="checkbox" checked><strong>Checkbox 2</strong></li>
+				<li><input type="radio" name="iCheck"><strong>Radio button 1</strong> </li>
+				<li><input type="radio" name="iCheck" checked><strong>Radio button 2</strong> </li>
+			</ul>
+			<script type="text/javascript">
+				$(document).ready(function(){
+				  $('.Check input').iCheck({
+				    checkboxClass: 'icheckbox_flat-blue',
+				    radioClass: 'iradio_flat-blue'
+				  });
+				});
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<pre>
+&lt;input type='checkbox' /&gt;
+&lt;input type='checkbox' checked /&gt;
+&lt;input type='radio' name="iCheck" /&gt;
+&lt;input type='radio' name="iCheck" checked /&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+$('.Check input').iCheck({
+  checkboxClass: 'icheckbox_flat-blue',
+  radioClass: 'iradio_flat-blue'
+});
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones" style="width: 30%;">
+		<h4>Scroll</h4>
+		<div class="Division Scroll">
+			<div class="scrollbar-inner" style="padding: 2em;">
+	            <p class="permanent">
+	                Simple inner scrollbar over content
+	            </p>
+	            <p class="permanent">
+	                <a href="#anchor">Click to test #anchors</a><br/><br/>
+	                <input type="text" value="Use TAB to focus next input" style="max-width:220px; width: 100%;">
+	            </p>
+	            <p>
+	                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+	                scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+	                Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+	                hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+	                pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+	                sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+	                ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+	                nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+	                viverra nisi, in interdum massa nibh nec erat.
+	            </p>
+	            <p>
+	                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+	                scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+	                Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+	                hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+	                pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+	                sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+	                ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+	                nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+	                viverra nisi, in interdum massa nibh nec erat.
+	            </p>
+	            <p>
+	                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a,
+	                scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus.
+	                Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel
+	                hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue,
+	                pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam
+	                sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare,
+	                ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget
+	                nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam
+	                viverra nisi, in interdum massa nibh nec erat.
+	            </p>
+	            <input type="text"><br/>
+	            <h3 id="anchor">Anchor</h3>
+	        </div>
+	        <script type="text/javascript">
+	            jQuery(document).ready(function(){
+	                jQuery('.scrollbar-inner').scrollbar();
+	            });
+	        </script>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;div class="scrollbar-inner"&gt;
+  &lt;p class="permanent"&gt;
+  &lt;/p&gt;
+  .
+  .
+  .
+  &lt;p&gt;
+  &lt;/p&gt;
+  .
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+jQuery(document).ready(function(){
+  jQuery('.scrollbar-inner').scrollbar();
+});
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>Dialogos</h4>
+		<div class="Division">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Dialogo</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Titulo</h4>
+						</div>
+						<div class="modal-body">
+							Probando 1 2 3 ...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+							<button type="button" class="btn btn-primary">Guardar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"&gt;Dialogo&lt;/button&gt;
+&lt;div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+       &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;
+         &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+       &lt;/button&gt;
+       &lt;h4 class="modal-title" id="myModalLabel"&gt;Titulo&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        Probando 1 2 3 ...
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+      	&lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Cerrar&lt;/button&gt;
+      	&lt;button type="button" class="btn btn-primary"&gt;Dialogo&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>Notificaciones</h4>
+		<div class="Division">
+			<button type="button" class="btn btn-success" id="btn-ok">Satisfecho</button>
+			<button type="button" class="btn btn-warning" id="btn-peligro">Peligro</button>
+			<button type="button" class="btn btn-danger" id="btn-error">Error</button>
+			<script type="text/javascript">
+			  $(document).ready(function() {
+			    toastr.options.timeOut = 2500; // 2.5s
+			    toastr.info('Cargando Pagina');
+			    $('#btn-ok').click(function() {
+			       toastr.success('Probando','Satisfecho');
+			    });
+			    $('#btn-peligro').click(function() {
+			       toastr.warning('Probando','Peligro');
+			    });
+				$('#btn-error').click(function() {
+			       toastr.error('Probando','Error');
+			    });
+			  });
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;button type="button" class="btn btn-success" id="btn-ok"&gt;Satisfecho&lt;/button&gt;
+&lt;button type="button" class="btn btn-warning" id="btn-peligro"&gt;Peligro&lt;/button&gt;
+&lt;button type="button" class="btn btn-danger" id="btn-error"&gt;Error&lt;/button&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(document).ready(function() {
+  toastr.options.timeOut = 2500; // 2.5s
+  toastr.info('Cargando Pagina');
+  $('#btn-ok').click(function() {
+    toastr.success('Probando','Satisfecho');
+  });
+  $('#btn-peligro').click(function() {
+    toastr.warning('Probando','Peligro');
+  });
+  $('#btn-error').click(function() {
+    toastr.error('Probando','Error');
+  });
+});
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>Tree</h4>
+		<div class="Division">
+			<div id="jstree">
+			    <ul>
+			      <li>Nodo 1
+			        <ul>
+			          <li>Nodo Hijo 1</li>
+			          <li>Nodo Hijo 2</li>
+			        </ul>
+			      </li>
+			      <li>Nodo 2</li>
+			    </ul>
+			</div>
+			<script>
+				$('#jstree').jstree();
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;div id="jstree"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Nodo 1
+      &lt;ul&gt;
+        &lt;li&gt;Nodo Hijo 1&lt;/li&gt;
+        &lt;li&gt;Nodo Hijo 2&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Nodo 2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $('#jstree').jstree();
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones" style="width: 70%;">
+		<h4>Calendario</h4>
+		<div class="Division">
+			<div id='calendar'></div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+				    $('#calendar').fullCalendar();
+				});
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;div id="calendar"&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function() {
+    $('#calendar').fullCalendar();
+  });
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+	<div class="Secciones">
+		<h4>Editor</h4>
+		<div class="Division">
+			<textarea cols="100" id="pip_editor" style="width: 100%; height: 300px;"></textarea>
+			<script type="text/javascript">
+				bkLib.onDomLoaded(function() {
+					new nicEditor().panelInstance('pip_editor');
+				});
+			</script>
+			<div class="Seccion-Code">
+				<code>
+					<label>CODIGO</label>
+					<pre>
+&lt;textarea cols="50" id="pip_editor"&gt;&lt;/textarea&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  bkLib.onDomLoaded(function() {
+    new nicEditor().panelInstance('pip_editor');
+  });
+&lt;/script&gt;
+					</pre>
+				</code>
+			</div>
+		</div>
+	</div>
+</div>

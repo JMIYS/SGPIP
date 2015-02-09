@@ -1,0 +1,40 @@
+.Secciones {
+	padding-right: 2%;
+	display: inline-table;
+}
+button.btn {
+	margin-bottom: 2%;
+}
+.Seccion-Code{
+	display: block;
+	padding-top: 2%;
+}
+.Division code{
+	display: block;
+	font-weight: 800;
+	margin-bottom: 5px;
+	background: rgba(0, 0, 0, 0);
+}
+.error .form-control {
+	box-shadow: 1px 1px 10px rgb(250, 150, 150);
+}
+.help-block {
+	color: rgb(219, 77, 77);
+}
+.input-group .input-group-addon {
+	background: rgb(0, 144, 217);
+	color: rgb(255, 255, 255);
+}
+.Check ul li {
+	padding-bottom: 10px;
+}
+.Check strong{
+	margin-left: 10px;
+}
+.Scroll > .scrollbar-inner {
+	max-height: 250px;
+	overflow: auto;
+}
+.scrollbar-inner p{
+	text-align: justify;
+}
