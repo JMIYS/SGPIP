@@ -1,0 +1,55 @@
+#contenido_one
+{
+	min-height: 100vh !important;	
+}
+
+
+
+
+.MySidebar
+{
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 0px;
+	color: #8b91a0;
+}
+
+.MySidebar a, a:hover
+{
+	text-decoration: none;
+}
+
+
+.MySidebar > li 
+{
+	display: block;
+	position: relative;
+	
+}
+
+.MySidebar > li > a, .MySidebar > li > label
+{
+	color: #8b91a0;
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0px;
+	padding: 11.5px 31px 11.5px 31px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.MySidebar > li > ul > li > a
+{
+	color: #8b91a0;
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0px;
+	padding: 11.5px 31px 11.5px 31px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+}

@@ -1,4 +1,6 @@
 /*-------------Contenedores-------------*/
+
+/*-------------BOX_1-------------*/
 .Box_1
 {
 	clear: both;
@@ -74,6 +76,26 @@
 	display: table;
 	width: 100%;
 }
+
+
+/*-------------BOX_2-------------*/
+
+.Box_2
+{
+	clear: both;
+	margin-top: -20px;
+	margin-right: -20px;
+	margin-left: -20px;
+	margin-bottom: 20px;
+}
+
+.Box_2 > .Cont
+{
+	background-color: #ffffff;
+	padding: 20px;
+	color: #6f7b8a;
+}
+
 
 /*-------------Formularios-------------*/
 .formulario_elemento 
