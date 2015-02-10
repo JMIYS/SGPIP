@@ -13,7 +13,7 @@ class ControladorInicio extends ControladorBase
         
     protected function Principal()//La accion por defecto para inicio (si no se envian parametros)
     {
-        //$this->ComprobarLogin();
+        $this->ComprobarLogin();
 
         $this->Header = file_get_contents("Vista/Secciones/Header.html");
         $this->Contenido = file_get_contents("Vista/Contenido/Inicio.html"); 

@@ -1,5 +1,5 @@
 <?php
-//require_once('Modelo/Login.php');
+require_once('Modelo/Login.php');
 if(class_exists('Constantes') === false or !class_exists('Constantes'))
     include_once('Recursos/Constantes.php');
 
@@ -23,7 +23,7 @@ abstract class ControladorBase
 
     public function __construct($action, $id, $urlValues)//obtener las funciones
     {
-        //$this->Login = new ModeloLogin();
+        $this->Login = new ModeloLogin();
         $this->Accion = $action;
         $this->URL = $urlValues;   
         $this->ID = $id; 
