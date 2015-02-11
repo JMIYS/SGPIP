@@ -66,14 +66,14 @@ function MySidebar(id)
 				if($(this).parent().children('ul').is(':visible'))
 				{
 					//lo ocultamos
-					$(this).parent().children('ul').slideUp();
+					$(this).parent().children('ul').slideUp('fast');
 				}
 				else
 				{
 					//ocultamos todos los demas ul de los otros li
-					$(this).parent().parent().children().has( "ul" ).children('ul').slideUp();
+					$(this).parent().parent().children().has( "ul" ).children('ul').slideUp('fast');
 					//mostramos el ul de este li
-					$(this).parent().children('ul').slideDown();
+					$(this).parent().children('ul').slideDown('fast');
 				};			   
 			});
 		};
@@ -83,5 +83,6 @@ function MySidebar(id)
 $(document).ready( function () {
     
     MySidebar("#panelbar");
-
+    jQuery('.scrollbar-inner').scrollbar();
+    
 } );
