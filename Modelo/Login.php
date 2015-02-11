@@ -10,7 +10,7 @@ class ModeloLogin extends ModeloBase
 
 	public function ValidarLogin($user='', $pass='')
 	{
-		$this->consulta="SELECT * FROM usuario WHERE usuario='$user' AND password='$pass' AND estado=1";	 	
+		$this->consulta="SELECT * FROM tusuario WHERE usuario='$user' AND password='$pass' ";	 	
 
 	 	if ($this->Consultar()) 
 		{
