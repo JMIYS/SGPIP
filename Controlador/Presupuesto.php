@@ -41,6 +41,23 @@ class ControladorPresupuesto extends ControladorBase
         $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;
     }
+
+    protected function Principal()//La accion por defecto para inicio (si no se envian parametros)
+    {
+        $this->ComprobarLogin();
+        
+        $this->Header = file_get_contents("Vista/Secciones/Header.html");
+        $this->Contenido = file_get_contents("Vista/Contenido/Presupuesto/Principal.html"); 
+        $this->User = file_get_contents("Vista/Secciones/User.html");
+        $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html")); 
+        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");
+
+        $jsss = array('jstree.min','Presupuesto_Principal'); 
+        $csss = array('Controles','Elementos','jstree.min');
+
+        $pagina = $this->MostarElementos($jsss, $csss);
+        print $pagina;
+    }
 }
 
 ?>

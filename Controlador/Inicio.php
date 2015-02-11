@@ -18,10 +18,13 @@ class ControladorInicio extends ControladorBase
         $this->Header = file_get_contents("Vista/Secciones/Header.html");
         $this->Contenido = file_get_contents("Vista/Contenido/Inicio.html"); 
         $this->User = file_get_contents("Vista/Secciones/User.html");
-        $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
-        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
+        $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html")); 
+        $this->Footer = file_get_contents("Vista/Secciones/Footer.html"); 
 
-        $pagina = $this->MostarElementos('', ''); 
+        $jsss = array('jquery.scrollbar.min'); 
+        $csss = array('jquery.scrollbar');
+
+        $pagina = $this->MostarElementos($jsss, $csss);
         print $pagina;
     }
 

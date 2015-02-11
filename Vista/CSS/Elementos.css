@@ -1,4 +1,58 @@
 /*-------------Contenedores-------------*/
+
+/*-------------Titulo_Principal-------------*/
+.Titulo_Principal
+{
+	overflow: hidden;
+}
+
+.Titulo_Principal .superior
+{
+	font-family: 'Open Sans';
+	font-size: 12.5px;
+	color: #515050;
+}
+
+.inferior
+{
+	padding: 0px;
+	letter-spacing: -1px;
+	display: block;
+	color: #666;
+	margin: 0 0 10px;
+	font-weight: 300;
+	font-family: 'Open Sans';
+}
+
+.inferior > i
+{
+	display: inline-block;
+	color: #73777c;
+	font-size: 35px;
+	margin-right: 12px;
+	position: relative;
+	top: 13px;
+	float: left;
+}
+
+.inferior > h3
+{
+	display: inline-block;
+	top: -5px;
+	position: relative;
+	width: 83%;
+	font-size: 24px;
+	font-family: 'Open Sans';
+	font-weight: 300;
+	color: #505458;
+}
+
+
+.negrita {
+	font-weight: 600;
+}
+
+/*-------------BOX_1-------------*/
 .Box_1
 {
 	clear: both;
@@ -8,7 +62,7 @@
 
 .Box_1 > .Tit
 {
-	padding: 20px;
+	padding: 20px 20px 0 20px;
 	color: #282323!important;
 	background-color: #ffffff;
 	margin-bottom: 0px;
@@ -23,7 +77,6 @@
 	font-weight: 400;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 7px;
 	width: 60%;
 	white-space: nowrap;
 	overflow: hidden;
@@ -74,6 +127,26 @@
 	display: table;
 	width: 100%;
 }
+
+
+/*-------------BOX_2-------------*/
+
+.Box_2
+{
+	clear: both;
+	margin-top: -20px;
+	margin-right: -20px;
+	margin-left: -20px;
+	margin-bottom: 20px;
+}
+
+.Box_2 > .Cont
+{
+	background-color: #ffffff;
+	padding: 20px;
+	color: #6f7b8a;
+}
+
 
 /*-------------Formularios-------------*/
 .formulario_elemento 
