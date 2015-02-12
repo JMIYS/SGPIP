@@ -20,8 +20,8 @@ class ControladorPresupuesto extends ControladorBase
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
-
-        $pagina = $this->MostarElementos('', 'Elementos'); 
+        $csss=array('Elementos','Presupuesto');
+        $pagina = $this->MostarElementos('Presupuesto', $csss); 
         print $pagina;
     }
 
