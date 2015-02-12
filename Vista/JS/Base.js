@@ -7,14 +7,18 @@ function slide_menu() {
 	{
 		$('#Aside').css('width', '0px');
 		$('#Contenido').css('overflow', 'auto');	
-		$('#Contenido').css('height', 'auto');		
+		$('#Contenido').css('height', 'auto');	
+		$('#menu_icono').css('color', '#4C5264');	
+
+			
 		menu_estado=1;
 	}
 	else
 	{
 		$('#Aside').css('width', '240px');
 		$('#Contenido').css('overflow', 'hidden');	
-		$('#Contenido').css('height', 'calc(100vh - 50px)');	
+		$('#Contenido').css('height', 'calc(100vh - 50px)');
+		$('#menu_icono').css('color', '#F35958');	
 		menu_estado=0;
 
 		$('#user_menu').css('width', '0px');
@@ -40,6 +44,7 @@ function slide_user() {
 		user_estado=0;
 
 		$('#Aside').css('width', '0px');
+		$('#menu_icono').css('color', '#4C5264');
 		menu_estado=1;
 	}	
 

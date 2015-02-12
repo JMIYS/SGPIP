@@ -89,17 +89,12 @@ abstract class ControladorBase
 
     public function CargarHeader($fuente='')
     {
-        $diccionario_elemento = array('{nombre_usuario}'=>$this->Login->GetNombre(),                                      
-                                      '{elemento_ruta}'=>Constantes::Path); 
-        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $fuente);
-    }
+        $diccionario_elemento = array('{nombre_usuario}'=>$this->Login->GetNombre(), 
+                                      '{id_organismo}'=>$this->Login->GetOrganismo(),
+                                      '{id_usuario}'=>$this->Login->GetCodigo()); 
 
-    public function CargarID($vista)
-    {
-        $diccionario_elemento = array('{id_inquilino}'=>$this->Login->GetInquilino(),
-                                        '{id_usuario}'=>$this->Login->GetCodigo()); 
-        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $vista);
-    }
+        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $fuente);
+    }    
 
     public function CargarTitulo($icono='', $principal='', $secundario='', $decripcion='')
     {

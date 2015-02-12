@@ -227,6 +227,13 @@ header
 	height: 50px;
 }
 
+#titulo_empresa img
+{
+	margin-left: auto;
+	margin-right: auto;
+	display: table;
+}
+
 #Aside
 {
 	width: 0px;
