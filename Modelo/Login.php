@@ -10,15 +10,14 @@ class ModeloLogin extends ModeloBase
 
 	public function ValidarLogin($user='', $pass='')
 	{
-		$this->consulta="SELECT * FROM tusuario WHERE usuario='$user' AND password='$pass' AND estado=1";	 	
+		$this->consulta="SELECT * FROM tusuario WHERE usuario='$user' AND password='$pass' ";	 	
 
 	 	if ($this->Consultar()) 
 		{
 			if(count($this->rows)>0)
 			{
 				$_SESSION['xafrhyjo']=array('usuario'=>$this->rows[0]['usuario'],
-									   'codigo'=>$this->rows[0]['idusuario'],
-									   'organismo'=>$this->rows[0]['idorganismo']);
+									   'codigo'=>$this->rows[0]['idusuario']);
 				return true;
 			}
 			else
@@ -45,9 +44,9 @@ class ModeloLogin extends ModeloBase
 	 	return $_SESSION['xafrhyjo']['usuario'];
 	}
 
-	public function GetOrganismo()
+	public function GetInquilino()
 	{
-	 	return $_SESSION['xafrhyjo']['organismo'];
+	 	return $_SESSION['xafrhyjo']['inquilino'];
 	}
 
 	public function GetCodigo()
@@ -59,14 +58,6 @@ class ModeloLogin extends ModeloBase
 	{
 		unset($_SESSION['xafrhyjo']);
         session_write_close();
-	}
-
-	public function ListarPrivilegios()
-	{		
-		$this->consulta="CALL spListar_Privilegios(".$_SESSION['xafrhyjo']['organismo'].")";
-	 	$this->Consultar();
-
-		return $this->rows;		
 	}
 
 	function __destruct() { 
