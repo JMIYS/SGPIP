@@ -11,12 +11,12 @@ class ControladorPresupuesto extends ControladorBase
         //$controllerName = str_replace("Controlador", "", get_class($this));    
     }
         
-    protected function Presupuesto()//La accion por defecto para inicio (si no se envian parametros)
+    protected function Registro()//La accion por defecto para inicio (si no se envian parametros)
     {
         //$this->ComprobarLogin();
 
         $this->Header = file_get_contents("Vista/Secciones/Header.html");
-        $this->Contenido = file_get_contents("Vista/Contenido/Presupuesto/Presupuesto.html"); 
+        $this->Contenido = file_get_contents("Vista/Contenido/Presupuesto/Registo_Presupuesto.html"); 
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
