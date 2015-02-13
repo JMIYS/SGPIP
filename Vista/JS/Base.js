@@ -1,5 +1,6 @@
 var menu_estado=1;
 var user_estado=1;
+var RutaBase="/SGPIP";
 
 function slide_menu() {
 	
