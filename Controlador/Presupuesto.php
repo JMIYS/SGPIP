@@ -13,15 +13,21 @@ class ControladorPresupuesto extends ControladorBase
         
     protected function Registro()//La accion por defecto para inicio (si no se envian parametros)
     {
-        //$this->ComprobarLogin();
-
+        require_once('Modelo/Presupuesto.php');        
+        $Presupuesto=new ModeloPresupuesto;
+        if(isset($_POST))
+        {
+            $this->ComprobarLogin();
+            $Presupuesto->guardar($_POST);            
+        }
         $this->Header = file_get_contents("Vista/Secciones/Header.html");
         $this->Contenido = file_get_contents("Vista/Contenido/Presupuesto/Registo_Presupuesto.html"); 
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
-        $csss=array('Elementos','Presupuesto');
-        $pagina = $this->MostarElementos('Presupuesto', $csss); 
+        $csss=array('Elementos','Presupuesto','toastr');
+        $jsss=array('Presupuesto','toastr');
+        $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;
     }
 
@@ -57,7 +63,7 @@ class ControladorPresupuesto extends ControladorBase
 
         $pagina = $this->MostarElementos($jsss, $csss);
         print $pagina;
-    }
+    }    
 }
 
 ?>

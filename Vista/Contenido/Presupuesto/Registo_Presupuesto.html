@@ -1,5 +1,5 @@
 <div class="Bloque">
-	<form>
+	<form onsubmit="return false;" method="POST" action="#">
 		<div class="Box_1">
 			<div class="Tit">
 				<h4> <span class="segundo">Nuevo Presupuesto</span></h4>
@@ -23,7 +23,7 @@
 								<div class="fila2a">
 									<span class="formulario_recomendacion">Codigo Cliente</span>
 									<div class="formulario_control">										
-										<input type="text" id="Codigo" name="Codigo">
+										<input type="text" id="Codigo" name="codigoCliente">
 									</div>
 								</div>
 								<div class="fila2b">
@@ -40,19 +40,19 @@
 								<div class="fila3">
 									<span class="formulario_recomendacion">Departamento</span>
 									<div class="formulario_control">
-										<input type="text" style="width:100%; id="Departamento" name="Departamento"">
+										<input type="text" style="width:100%;" id="Departamento" name="Departamento">
 									</div>
 								</div>
 								<div class="fila3">
 									<span class="formulario_recomendacion">Provincia</span>
 									<div class="formulario_control">
-										<input type="text" style="width:100%; id="Provincia" name="Provincia"">
+										<input type="text" style="width:100%;"id="Provincia" name="Provincia">
 									</div>
 								</div>
 								<div class="fila3">
 									<span class="formulario_recomendacion">Distrito</span>
 									<div class="formulario_control">
-										<input type="text" style="width:100%; id="Distrito" name="Distrito"">
+										<input type="text" style="width:100%;" id="Distrito" name="Distrito">
 									</div>
 								</div>
 							</div>
@@ -92,6 +92,16 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="formulario_elemento col-md-12">
+								<label class="formulario_label"style="width:100%;">Moneda</label>
+								<div class="fila3">									
+									<div class="formulario_control">
+										<input type="text" style="width:100%;" id="Moneda" name="Moneda">
+									</div>
+								</div>								
+							</div>
+						</div>		
 						<div class="formulario_elemento col-md-6">
 							<div class="row">
 								<div class="formulario_elemento col-md-12">
@@ -134,7 +144,7 @@
 			<div class="Bas">			
 
 				<div class="pull-right">
-					<button onclick=""> Guardar</button>
+					<button onclick="AgregarSub();"> Guardar</button>
 					<button >Cancelar</button>
 				</div>
 			</div>

@@ -1,4 +1,5 @@
-function hola()
+function AgregarSub()
 {
-	alert("hola mundo");
+	 toastr.options.timeOut = 2500;
+	 toastr.success('Probando','Satisfecho');
 }
