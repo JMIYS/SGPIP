@@ -19,8 +19,8 @@ class ControladorInicio extends ControladorBase
         $this->Contenido = file_get_contents("Vista/Contenido/Inicio.html"); 
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
-        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
-
+        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");
+        
         $pagina = $this->MostarElementos('', ''); 
         print $pagina;
     }
