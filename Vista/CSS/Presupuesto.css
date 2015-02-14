@@ -1,0 +1,35 @@
+#presupuesto
+{
+	width: 100%;
+	margin: auto;
+	
+}
+.fila3
+{
+	width: 30%;
+	float: left;
+	margin: 4px;
+}
+.fila2a
+{
+	width: 30%;
+	float: left;
+}
+.fila2b
+{
+	width: 63.3%%;
+	float: left;
+}
+
+@media screen and (max-width: 400px){	
+	.fila2a,.fila2b {
+	width: 100%;
+	float: left;
+	margin: 4px;
+	}
+	.fila3 {
+	width: 100%;
+	float: left;
+	margin: 4px;
+	}
+}

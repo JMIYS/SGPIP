@@ -6,7 +6,7 @@ class Constantes
 	const Host = 'localhost';
 	const User = 'root';
 	const Password = '';
-	const DataBase = 'Base_Tienda';
+	const DataBase = 'base_pip';
 	//Rutas
 	const Path = '/SGPIP';
 }

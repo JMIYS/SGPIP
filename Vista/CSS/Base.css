@@ -135,6 +135,7 @@ header
 	text-align: center;
 	font-size: 12px;
 	padding: 0 4px;
+	line-height: 15px;
 }
 
 #menu_rigth_top
@@ -226,6 +227,13 @@ header
 	height: 50px;
 }
 
+#titulo_empresa img
+{
+	margin-left: auto;
+	margin-right: auto;
+	display: table;
+}
+
 #Aside
 {
 	width: 0px;
@@ -234,13 +242,98 @@ header
 	float: left;
 	overflow: hidden;
 	color: #FFFFFF;
-	height: 100vh;
 
-	-webkit-transition:300ms linear;
-	-moz-transition:300ms linear;
-	-o-transition:300ms linear;
-	-ms-transition:300ms linear;
-	transition:300ms linear;
+	-webkit-transition:100ms linear;
+	-moz-transition:100ms linear;
+	-o-transition:100ms linear;
+	-ms-transition:100ms linear;
+	transition:100ms linear;
+}
+
+#contenedor_panelbar
+{
+	height: calc(100vh - 50px);
+	height: -webkit-calc(100vh - 50px);
+	height:: -moz-calc(100vh - 50px); 
+}
+
+
+.MySidebar
+{
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 0px;
+	color: #8b91a0;
+}
+
+.MySidebar a, a:hover
+{
+	text-decoration: none;
+}
+
+
+.MySidebar > li 
+{
+	display: block;
+	position: relative;
+	min-width: 240px;
+}
+
+.MySidebar > li > a, .MySidebar > li > label
+{
+	color: #8b91a0;
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0px;
+	padding: 11.5px 31px 11.5px 31px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.MySidebar > li > label:before
+{
+	float: right;
+	margin-top: 1px;
+	margin-right: 3px;
+	display: inline;
+	font-family: FontAwesome;
+	height: auto;
+	font-size: 16px;
+	content: "\f107";
+	font-weight: 300;
+	text-shadow: none;
+}
+
+.MySidebar > li > a:hover, .MySidebar > li > label:hover
+{
+	color: #FFFFFF;
+}
+
+.MySidebar > li > ul 
+{
+	padding: 0;
+	background-color: #22262E;
+}
+
+.MySidebar > li > ul > li > a
+{
+	color: #e1eaf1;
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0px;
+	padding: 11.5px 31px 11.5px 51px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.MySidebar > li > ul > li > a:hover
+{
+	background-color: #2C3037;
 }
 /*
 #panelbar

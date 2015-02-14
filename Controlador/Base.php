@@ -1,5 +1,5 @@
 <?php
-//require_once('Modelo/Login.php');
+require_once('Modelo/Login.php');
 if(class_exists('Constantes') === false or !class_exists('Constantes'))
     include_once('Recursos/Constantes.php');
 
@@ -23,7 +23,7 @@ abstract class ControladorBase
 
     public function __construct($action, $id, $urlValues)//obtener las funciones
     {
-        //$this->Login = new ModeloLogin();
+        $this->Login = new ModeloLogin();
         $this->Accion = $action;
         $this->URL = $urlValues;   
         $this->ID = $id; 
@@ -89,17 +89,12 @@ abstract class ControladorBase
 
     public function CargarHeader($fuente='')
     {
-        $diccionario_elemento = array('{nombre_usuario}'=>$this->Login->GetNombre(),                                      
-                                      '{elemento_ruta}'=>Constantes::Path); 
-        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $fuente);
-    }
+        $diccionario_elemento = array('{nombre_usuario}'=>$this->Login->GetNombre(), 
+                                      '{id_organismo}'=>$this->Login->GetOrganismo(),
+                                      '{id_usuario}'=>$this->Login->GetCodigo()); 
 
-    public function CargarID($vista)
-    {
-        $diccionario_elemento = array('{id_inquilino}'=>$this->Login->GetInquilino(),
-                                        '{id_usuario}'=>$this->Login->GetCodigo()); 
-        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $vista);
-    }
+        return str_replace(array_keys($diccionario_elemento), array_values($diccionario_elemento), $fuente);
+    }    
 
     public function CargarTitulo($icono='', $principal='', $secundario='', $decripcion='')
     {
@@ -111,27 +106,24 @@ abstract class ControladorBase
         return str_replace(array_keys($diccionario_titulo), array_values($diccionario_titulo), $titulo);
     }
 
-    public function CargarAside($uno='', $dos='')
+    public function CargarAside()
     {
         $aside = file_get_contents('Vista/Secciones/Aside.html');
         $datos = $this->Login->ListarPrivilegios();
-        //$datos = $this->Login->ListarPrivilegios();
-        $base="<li".(($uno == "Inicio") ? " class='k-state-active el_seleccionado' ":"")."><a href='".Constantes::Path."/Inicio/Principal' ><i class='fa fa-home'></i>&nbsp;Inicio".(($uno == "Inicio") ? "<span class='prin_seleccionado'></span>":"")."</a></li>";
-        $principal='';
+
+        $base = "<li><a href='".Constantes::Path."/Inicio/Principal'><i class='fa fa-home'></i>&nbsp;&nbsp;&nbsp;Inicio</a></li>";
+        $modulo = '';
 
         foreach ($datos as $fila) 
         {
-            if($fila["nombre_modulo"] != $principal)
+            if($fila["nombre_modulo"] != $modulo)
             {
-                if($principal != '')
-                    $base.="</ul>";
-
-                $base.="<li".(($uno == $fila["nombre_modulo"]) ? " class='k-state-active el_seleccionado' ":"")."><span><i class='fa ".$fila["imagen"]."'></i>&nbsp;".$fila["titulo_modulo"].(($uno == $fila["nombre_modulo"]) ? "<span class='prin_seleccionado'></span>":"")."</span><ul><li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_secundario"]."' ".(($dos == $fila["nombre_secundario"]) ? " class='sub_selected' ":"")." >".$fila["titulo_secundario"]."</a></li>";
-                $principal = $fila["nombre_modulo"];
+                $base.="<li><label><i class='fa ".$fila["imagen"]."'></i>&nbsp;&nbsp;&nbsp;".$fila["titulo_modulo"]."</label><ul><li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_submodulo"]."' >".$fila["titulo_submodulo"]."</a></li>";
+                $modulo = $fila["nombre_modulo"];                
             }
             else
             {
-                $base.="<li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_secundario"]."' ".(($dos == $fila["nombre_secundario"]) ? " class='sub_selected' ":"")." >".$fila["titulo_secundario"]."</a></li>";
+                $base.="<li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_submodulo"]."'>".$fila["titulo_submodulo"]."</a></li>";
             }
         }
 
