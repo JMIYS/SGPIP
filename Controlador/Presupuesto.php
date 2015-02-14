@@ -15,9 +15,12 @@ class ControladorPresupuesto extends ControladorBase
     {
         require_once('Modelo/Presupuesto.php');        
         $Presupuesto=new ModeloPresupuesto;
-        if(isset($_POST))
+        require_once('Modelo/Login.php');        
+        $Login=new ModeloLogin;                
+        if(count($_POST)>0)
         {
             $this->ComprobarLogin();
+            $_POST["idOrganismo"]=$Login->GetOrganismo();           
             $Presupuesto->guardar($_POST);            
         }
         $this->Header = file_get_contents("Vista/Secciones/Header.html");

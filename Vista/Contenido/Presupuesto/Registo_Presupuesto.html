@@ -1,5 +1,5 @@
 <div class="Bloque">
-	<form onsubmit="return false;" method="POST" action="#">
+	<form method="POST" action="#">
 		<div class="Box_1">
 			<div class="Tit">
 				<h4> <span class="segundo">Nuevo Presupuesto</span></h4>
@@ -39,8 +39,8 @@
 								<label class="formulario_label" style="width:100%;">Ubicacion</label>
 								<div class="fila3">
 									<span class="formulario_recomendacion">Departamento</span>
-									<div class="formulario_control">
-										<input type="text" style="width:100%;" id="Departamento" name="Departamento">
+									<div class="formulario_control">									
+										<select class="form-control" style="width:100%;" id="Departamento" name="Departamento"></select>
 									</div>
 								</div>
 								<div class="fila3">
@@ -144,7 +144,7 @@
 			<div class="Bas">			
 
 				<div class="pull-right">
-					<button onclick="AgregarSub();"> Guardar</button>
+					<button> Guardar</button>
 					<button >Cancelar</button>
 				</div>
 			</div>
