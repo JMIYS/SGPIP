@@ -22,7 +22,10 @@ function slide_menu() {
 		$('#menu_icono').css('color', '#F35958');	
 		menu_estado=0;
 
-		$('#user_menu').css('width', '0px');
+		$('#Contenido_Box').css('margin-right', '0px');
+		//$('#m_config').css('display', 'block');
+		//$('#box_user').css('margin-left', '0px');
+		//$('#text_name').css('display', 'inline-block');	
 		user_estado=1;
 	}	
 
@@ -32,16 +35,25 @@ function slide_user() {
 	
 	if(user_estado==0)
 	{
-		$('#user_menu').css('width', '0px');
+		$('#Contenido_Box').css('margin-right', '0px');
 		$('#Contenido').css('overflow', 'auto');	
 		$('#Contenido').css('height', 'auto');			
 		user_estado=1;
+		
+		//$('#m_config').css('display', 'block');
+		//$('#box_user').css('margin-left', '0px');
+		//$('#text_name').css('display', 'inline-block');	
 	}
 	else
 	{
-		$('#user_menu').css('width', '240px');
+		$('#Contenido_Box').css('margin-right', '240px');
 		$('#Contenido').css('overflow', 'hidden');	
-		$('#Contenido').css('height', 'calc(100vh - 50px)');		
+		$('#Contenido').css('height', 'calc(100vh - 50px)');
+		//
+		//$('#m_config').css('display', 'none');
+		//$('#box_user').css('margin-right', '10px');
+		//$('#text_name').css('display', 'none');		
+		//		
 		user_estado=0;
 
 		$('#Aside').css('width', '0px');

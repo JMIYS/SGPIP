@@ -18,6 +18,7 @@ ul
 	list-style: none;
 }
 
+
 /*-------------HEADER-------------*/
 header
 {
@@ -184,12 +185,20 @@ header
 	background-color: #FFFFFF;
 	overflow: hidden;
 	display: block;
+	z-index: 6;
+	position: relative;
+	-webkit-transition:100ms linear;
+	-moz-transition:100ms linear;
+	-o-transition:100ms linear;
+	-ms-transition:100ms linear;
+	transition:100ms linear;
 }
 
 #Contenido
 {
 	background-color: #E5E9EC;
 	width: 100%;
+	min-width: 240px;
 }
 
 #contenido_one
@@ -204,21 +213,15 @@ header
 
 #user_menu
 {
-	width: 0px;
-	min-height: calc(100vh - 50px);
-	min-height: -webkit-calc(100vh - 50px);
-	min-height:: -moz-calc(100vh - 50px); 
-	position: absolute;
+	width: 240px;
+	min-height: 100vh;
+	position: fixed;
 	background-color: #F1F1F9;	
 	border-left: 1px solid #E7E6EB;
-	overflow: hidden;
-	-webkit-transition:300ms linear;
-	-moz-transition:300ms linear;
-	-o-transition:300ms linear;
-	-ms-transition:300ms linear;
-	transition:300ms linear;
-	top: 50px;
+	overflow: hidden;	
+	top: 0;
 	right: 0;
+	z-index: 5;
 }
 
 /*-------------ASIDE-------------*/
@@ -242,12 +245,13 @@ header
 	float: left;
 	overflow: hidden;
 	color: #FFFFFF;
-
 	-webkit-transition:100ms linear;
 	-moz-transition:100ms linear;
 	-o-transition:100ms linear;
 	-ms-transition:100ms linear;
 	transition:100ms linear;
+	z-index: 7;
+	position: relative;
 }
 
 #contenedor_panelbar

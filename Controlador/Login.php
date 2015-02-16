@@ -37,7 +37,7 @@ class ControladorLogin extends ControladorBase
 
     protected function Logout()
     {
-        //$this->Login->Salir();
+        $this->Login->Salir();
         header("Location: http://". $_SERVER['HTTP_HOST'].Constantes::Path."/Login/Principal" );
         exit;
     }
