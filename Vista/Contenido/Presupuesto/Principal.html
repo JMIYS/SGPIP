@@ -19,16 +19,7 @@
 			</div>		
 			<div class="Cont">
 
-				<div id="jstree">
-				  <ul>
-				    <li>Nodo 1
-				      <ul>
-				        <li>Nodo Hijo 1</li>
-				        <li>Nodo Hijo 2</li>
-				      </ul>
-				    </li>
-				    <li>Nodo 2</li>
-				  </ul>
+				<div id="Contenedor">				  
 				</div>
 
 			</div>
@@ -38,7 +29,7 @@
 	  	<div class="Box_1">
 			<div class="Tit">
 				<div class="Herramientas">
-				<a href=""><i class="fa fa-refresh"></i></a>
+				<a href="javascript:void(0)" onclick="Actualizar_Tabla();"><i class="fa fa-refresh"></i></a>
 				<a href="" target="_blank"><i class="fa fa-question-circle"></i></a>				
 				</div>
 				<h4>Mis <span class="segundo">Presupuestos</span></h4>				 
@@ -62,4 +53,61 @@
 	  </div>
 	</div>
 
+	<div id="subpresupuestos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-lg">
+	    	<div class="modal-content">
+			    <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			        <h4 id="myModalLabel"><strong>SUB-PRESUPUESTOS</strong></h4>
+			    </div>
+			    <div class="modal-body">
+			    	<input id="pres_seleccionado" type="hidden" value="0">
+			    	<button id="nuevo_subpresupuesto" type="button" class="btn btn-primary" onclick="Mostrar();" style="margin-botton: 10px">Nuevo</button>
+			    	<button id="nactualizar_lista_sub" type="button" class="btn btn-default" onclick="Actualizar();" style="margin-botton: 10px">Actualizar</button>		
+
+					<div id="nuevo_form" class="panel panel-primary" style="display:none">
+					  <div class="panel-heading"><strong>NUEVO SUB-PRESUPUESTO</strong>
+					  	<div class="pull-right">
+					  		<button class="close miniclose" onclick="Ocultar();"><span class="glyphicon glyphicon-remove"></span></button>
+					  	</div>
+					  </div>
+					  <div class="panel-body" style="padding: 15px 15px 0px 15px;">
+					    <div class="row">
+							<div class="formulario_elemento col-md-12">
+								<label class="formulario_label">Descripción</label>
+								<span class="formulario_recomendacion">Ingrese el Nombre</span>
+								<div class="formulario_control">
+									<input class="form-control" type="text" >
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="formulario_elemento col-md-12">
+								<label class="formulario_label">Cantidad</label>
+								<span class="formulario_recomendacion">1,2,3,...</span>
+								<div class="formulario_control">
+									<input type="text" class="form-control" id="cantidad_subpresupuesto" value="1"/>
+  									<span class="help-block"></span>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="panel-footer">
+					  	<div class="pull-right">					  		
+						  	<button type="button" class="btn btn-success" onclick="GuardarSubPresupuesto();">Guardar</button>
+						  	<button type="button" class="btn btn-default" onclick="Ocultar();">Cancelar</button>				  		
+					  	</div>
+					  	<div class="clearfix"></div>
+					  </div>
+					</div>
+
+					<div id="lista_subpresupuesto" class="list-group" style="margin-bottom: 5px;">
+					</div>
+			    </div>
+			    <div class="modal-footer">
+			        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" style="margin-bottom: 0;">Cerrar</button>
+			    </div>
+			</div>
+		</div>
+	</div>
 </div>

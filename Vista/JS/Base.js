@@ -23,9 +23,9 @@ function slide_menu() {
 		menu_estado=0;
 
 		$('#Contenido_Box').css('margin-right', '0px');
-		//$('#m_config').css('display', 'block');
-		//$('#box_user').css('margin-left', '0px');
-		//$('#text_name').css('display', 'inline-block');	
+		$('#m_config').css('display', '');
+		$('#box_user').css('margin-right', '0px');
+		$('#text_name').css('display', 'inline-block');		
 		user_estado=1;
 	}	
 
@@ -40,9 +40,9 @@ function slide_user() {
 		$('#Contenido').css('height', 'auto');			
 		user_estado=1;
 		
-		//$('#m_config').css('display', 'block');
-		//$('#box_user').css('margin-left', '0px');
-		//$('#text_name').css('display', 'inline-block');	
+		$('#m_config').css('display', '');
+		$('#box_user').css('margin-right', '0px');
+		$('#text_name').css('display', 'inline-block');	
 	}
 	else
 	{
@@ -50,9 +50,9 @@ function slide_user() {
 		$('#Contenido').css('overflow', 'hidden');	
 		$('#Contenido').css('height', 'calc(100vh - 50px)');
 		//
-		//$('#m_config').css('display', 'none');
-		//$('#box_user').css('margin-right', '10px');
-		//$('#text_name').css('display', 'none');		
+		$('#m_config').css('display', 'none');
+		$('#box_user').css('margin-right', '10px');
+		$('#text_name').css('display', 'none');		
 		//		
 		user_estado=0;
 
