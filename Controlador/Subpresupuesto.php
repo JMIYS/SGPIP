@@ -22,8 +22,9 @@ class ControladorSubpresupuesto extends ControladorBase
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
 
 
-         $jss = array('jquery.dataTables.min', 'dataTables.responsive.min', 'Tabla_Ejemplo');
-        $csss = array('jquery.dataTables.min', 'dataTables.responsive', 'Nuevo_Tabla', 'Elementos');
+         $jss = array('jquery.dataTables.min', 'dataTables.responsive.min', 'Subpresupuesto_hoja');
+        $csss = array('jquery.dataTables.min', 'dataTables.responsive', 'Nuevo_Tabla', 'Elementos',"subpresup");
+        
 
         $pagina = $this->MostarElementos($jss, $csss ); 
         print $pagina;

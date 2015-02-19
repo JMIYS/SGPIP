@@ -5,3 +5,17 @@
 #descripcion_sub{
 	margin-bottom: .6em;
 }
+.contenedor-buscar
+{
+	display: table;
+	width: 100%;
+}
+.contenedor-buscar input
+{
+	display: table-cell;
+}
+.buscar-label
+{
+	display: table-cell;
+	width: 80px;
+}
