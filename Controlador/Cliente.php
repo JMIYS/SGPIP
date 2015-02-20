@@ -14,15 +14,33 @@ class ControladorCliente extends ControladorBase
         //$this->ComprobarLogin();
 
         $this->Header = file_get_contents("Vista/Secciones/Header.html");
-        $this->Contenido = file_get_contents("Vista/Contenido/Cliente/Registrar.html"); 
+        if($_POST)
+        {
+            require_once('Modelo/Cliente.php');
+            $varo=new ModeloCliente();
+            
+            $this->Contenido = file_get_contents("Vista/Contenido/Cliente/Mensaje.html"); 
+
+        }
+        else{
+
+             $this->Contenido = file_get_contents("Vista/Contenido/Cliente/Registrar.html"); 
+        }
+
+
+       
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
 
         $csss = array('cliente_registrar', 'Elementos');
-        $pagina = $this->MostarElementos('',$csss); 
+        //$jsss = array('cliente_registro', 'Elementos');
+        $pagina = $this->MostarElementos("cliente_registro",$csss); 
         print $pagina;
+
+
     }
+
 }
 
 ?>

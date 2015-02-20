@@ -19,7 +19,52 @@
 						</div>
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label" style="width:100%;">Cliente &nbsp; &nbsp;&nbsp; <a href="#" onclick="hola();"><i class="fa fa-search"> &nbsp;Buscar</i></a></label>								
+
+
+								<label class="formulario_label" style="width:100%;">Cliente &nbsp; &nbsp;&nbsp; 
+								<a href="#"  data-toggle="modal" data-target="#myModal">
+								<i class="fa fa-search"> &nbsp;Buscar</i></a></label>		
+
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+									  <div class="modal-dialog modal-lg">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									         <span aria-hidden="true">×</span>
+									       </button>
+									       <h4 class="modal-title" id="myModalLabel">Lista de clientes</h4>
+									      </div>
+									      <div class="modal-body">
+									        <div >
+													<table id="cliente_mostrar" class="row-border hover responsive no-wrap compact" cellspacing="0" width="100%">
+												        <thead>
+												            <tr>
+												            	<th>IDCliente</th>
+												                <th>Razon Social</th>
+												                <th>Abrev.</th>
+												                <th>Persona</th>
+												                <th>RUC</th>
+												                <th>DNI</th>
+												                <th>Correo</th>
+												                <th>Direccion</th>
+												            </tr>
+												        </thead>
+												    </table>
+												</div>
+										    
+
+
+
+
+									      </div>
+									      <div class="modal-footer">
+									      	<button type="button" class="btn btn-primary">Cerrar</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
+
 								<div class="fila2a">
 									<span class="formulario_recomendacion">Codigo Cliente</span>
 									<div class="formulario_control">										

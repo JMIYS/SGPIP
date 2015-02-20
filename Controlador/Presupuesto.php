@@ -28,8 +28,8 @@ class ControladorPresupuesto extends ControladorBase
         $this->User = file_get_contents("Vista/Secciones/User.html");
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
-        $csss=array('Elementos','Presupuesto','toastr');
-        $jsss=array('Presupuesto','toastr');
+        $csss=array('dataTables.responsive', 'Nuevo_Tabla', 'Elementos','Presupuesto','toastr');
+        $jsss=array('jquery.dataTables.min', 'dataTables.responsive.min','Presupuesto','toastr','cliente_listar');
         $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;
     }
