@@ -28,8 +28,38 @@ $response = $app->response;
 
 });*/
 
+$app->group('/General', function () use ($app, $request, $Modelo) {
+   
+    $app->get('/Lista', function () use ($request, $Modelo) {
 
-$app->get("/Subpresupuesto", function () use ($request, $Modelo){
+        $resultado = $Modelo->ListarCatalogo();
+    if(count($resultado)>0)
+        echo "{\"data\":".json_encode($resultado)."}";  
+    else
+        echo "{}";
+    });       
+
+});
+
+$app->group('/Categoria', function () use ($app, $request, $Modelo) {
+
+    $app->get('/Lista', function () use ($request, $Modelo) {
+
+        $padre = $request->get('idcategoria');
+        
+        $arrayName = array('idcategoria' => $padre);
+        $resultado = $Modelo->ListarTituloCategoria($arrayName);
+    if(count($resultado)>0)
+        echo "{\"data\":".json_encode($resultado)."}";  
+    else
+        echo "{}";
+    }); 
+   
+
+});
+
+
+/*$app->get("/Subpresupuesto", function () use ($request, $Modelo){
     
     $resultado = $Modelo->ListarCatalogo();
     if(count($resultado)>0)
@@ -37,11 +67,11 @@ $app->get("/Subpresupuesto", function () use ($request, $Modelo){
     else
         echo "{}";
 
-});
+});*/
 
 //-------------------------------------------------------------------POST modificar
 
-$app->post('/Subpresupuesto', function() use($request, $Modelo) {
+/*$app->post('/Subpresupuesto', function() use($request, $Modelo) {
 
     $body = json_decode($request->getBody(), true);    
     $id = $Modelo->ActualizarTitulo($body);    
@@ -61,7 +91,7 @@ $app->put('/Subpresupuesto', function () use($request, $Modelo) {
         $resultado = array('Estado' => $ress, 'Mensaje' => $Modelo->mensaje, 'Codigo_Int' => 0, 'Codigo_String' => '');
         echo json_encode($resultado);
     }
-);
+);*/
 
 $app->run();
 

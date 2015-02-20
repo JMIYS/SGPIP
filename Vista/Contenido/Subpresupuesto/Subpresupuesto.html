@@ -25,16 +25,50 @@
        
 
 	<div class="Box_1">
-		<div class="Tit">         
-
-		</div>
+		
 		<div class="Cont">
+<!--style="display:none"-->
+			<div id="nuevo_form" class="panel panel-success" style="display:none">
+					  <div class="panel-heading"><strong>NUEVO TITULO</strong>
+					  	<div class="pull-right">
+					  		<button class="close miniclose" onclick="ocultar();"><span class="glyphicon glyphicon-remove"></span></button>
+					  	</div>
+					  </div>
+					  <div class="panel-body" style="padding: 15px 15px 0px 15px;">
+					    <div class="row">
+							<div class="formulario_elemento col-md-12">
+								<label class="formulario_label">Descripción </label>
+								<span class="formulario_recomendacion">Ingrese el Titulo</span>
+								<div class="formulario_control">
+									<input class="form-control" type="text" >
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="formulario_elemento col-md-12">
+								<label class="formulario_label">Categoria</label>
+								<div class="formulario_control">
+									<select class= "stateCombo form-control"  > <option value='0' title='-select one-'>-Selecione categoria-</option></select>
+  									<span class="help-block"></span>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="panel-footer">
+					  	<div class="pull-right">					  		
+						  	<button type="button" class="btn btn-success" onclick="GuardarSubPresupuesto();">Guardar Despues</button>
+						  	<button type="button" class="btn btn-default" onclick="ocultar();">Cancelar</button>				  		
+					  	</div>
+					  	<div class="clearfix"></div>
+					  </div>
+					</div>
 
 			<table id="TablaCatalogoTitulos" class="row-border hover responsive no-wrap" cellspacing="0" width="100%">
        		<thead>
             	<tr>
                		<th>ID</th>
                 	<th>DESCRIPCION</th>
+                	<th></th>
                 	<th></th>
                 	<th></th>
         	</thead>
