@@ -118,7 +118,7 @@ $(document).ready( function () {
     });
 
     $('<a href="'+RutaBase+'/Presupuesto/Registro" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
-
+    //ELIMINAR
     $("#presupuestos tbody").on('click', '.elim', function( evt ) {
 
         var lafila = $(this).closest('tr');
@@ -128,21 +128,45 @@ $(document).ready( function () {
         {
             var correccion = (indice - 1);
             var fil = $("#presupuestos tbody").children().eq(correccion);
-            alert("Eliminar"+fil.children().eq(0).html());
+
+            if (confirm('Esta seguro que desea eliminar el Presupuesto?\nSe eliminaran todos los datos correspondientes a este.')) {
+                alert("Eliminar"+fil.children().eq(0).html());
+            } else {
+                
+            }
+           
         }
         else
         {
             var fil = $("#presupuestos tbody").children().eq(indice);
-            alert("Eliminar"+fil.children().eq(0).html());
+            if (confirm('Esta seguro que desea eliminar el Presupuesto?\nSe eliminaran todos los datos correspondientes a este.')) {
+                alert("Eliminar"+fil.children().eq(0).html());
+            } else {
+                
+            }    
         }  
     });
 
+    //MODIFICAR
     $("#presupuestos tbody").on('click', '.edit', function( evt ) {
-        
-        var col = $(this).parent().parent().children().eq(0);
-        alert("Editar "+col.html());
+
+        var lafila = $(this).closest('tr');
+        var indice = $("#presupuestos tbody tr").index(lafila); 
+
+        if(lafila.find("li").length > 0)
+        {
+            var correccion = (indice - 1);
+            var fil = $("#presupuestos tbody").children().eq(correccion);
+            window.location.href = RutaBase+"/Presupuesto/Modificar/"+fil.children().eq(0).html();
+        }
+        else
+        {
+            var fil = $("#presupuestos tbody").children().eq(indice);
+            window.location.href = RutaBase+"/Presupuesto/Modificar/"+fil.children().eq(0).html();
+        }  
     });
 
+    //ABRIR
     $("#presupuestos tbody").on('click', '.opp', function( evt ) {
 
         var lafila = $(this).closest('tr');
@@ -210,7 +234,7 @@ function EditarSubPresupuesto (item) {
 }
 
 function EliminarSubPresupeusto (idsub) {
-    if (confirm('Esta Seguro que desea eliminar el supresupuesto?\nUna ves eliminado no se podra recuperar!')) {
+    if (confirm('Esta seguro que desea eliminar el Subpresupuesto?\nUna ves eliminado no se podra recuperar!.')) {
     // Save it!
     } else {
         // Do nothing!
