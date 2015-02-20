@@ -1,0 +1,20 @@
+.miniclose
+{
+	padding: 1px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	line-height: 22px;
+}
+
+div.list-group-item:hover {
+	color: #555;
+	text-decoration: none;
+	background-color: #f5f5f5;
+}
+
+div.list-group-item a
+{
+	color: #555;
+}
+

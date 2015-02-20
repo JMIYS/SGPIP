@@ -1,10 +1,97 @@
+var latabla;
+
 $(document).ready( function () {
-    $('#jstree').jstree();
+
+    /*
+    $('#tree')
+                .jstree({
+                    'core' : {
+                        'data' : {
+                            'url' : '?operation=get_node',
+                            'data' : function (node) {
+                                return { 'id' : node.id };
+                            }
+                        },
+                        'check_callback' : true,
+                        'themes' : {
+                            'responsive' : false
+                        }
+                    },
+                    'plugins' : ['state','dnd','contextmenu','wholerow']
+                })
+                .on('delete_node.jstree', function (e, data) {
+                    $.get('?operation=delete_node', { 'id' : data.node.id })
+                        .fail(function () {
+                            data.instance.refresh();
+                        });
+                })
+                .on('create_node.jstree', function (e, data) {
+                    $.get('?operation=create_node', { 'id' : data.node.parent, 'position' : data.position, 'text' : data.node.text })
+                        .done(function (d) {
+                            data.instance.set_id(data.node, d.id);
+                        })
+                        .fail(function () {
+                            data.instance.refresh();
+                        });
+                })
+                .on('rename_node.jstree', function (e, data) {
+                    $.get('?operation=rename_node', { 'id' : data.node.id, 'text' : data.text })
+                        .fail(function () {
+                            data.instance.refresh();
+                        });
+                })
+                .on('move_node.jstree', function (e, data) {
+                    $.get('?operation=move_node', { 'id' : data.node.id, 'parent' : data.parent, 'position' : data.position })
+                        .fail(function () {
+                            data.instance.refresh();
+                        });
+                })
+                .on('copy_node.jstree', function (e, data) {
+                    $.get('?operation=copy_node', { 'id' : data.original.id, 'parent' : data.parent, 'position' : data.position })
+                        .always(function () {
+                            data.instance.refresh();
+                        });
+                })
+                .on('changed.jstree', function (e, data) {
+                    if(data && data.selected && data.selected.length) {
+                        $.get('?operation=get_content&id=' + data.selected.join(':'), function (d) {
+                            $('#data .default').html(d.content).show();
+                        });
+                    }
+                    else {
+                        $('#data .content').hide();
+                        $('#data .default').html('Select a file from the tree.').show();
+                    }
+                });
+
+    */
+
+    $('#Contenedor').jstree({
+        'core' : {
+            'data' : {
+                'url' : RutaBase + '/Servicios/Contenedor.php/Lista?idorganismo=1&idusuario=1',
+                'data' : function (node) {
+                    return { 'id' : node.id };
+                }
+            },
+            'check_callback' : true,
+            'themes' : {
+                'responsive' : true
+            }
+        },
+        'plugins' : ['state','dnd','contextmenu','wholerow']
+    }).on('move_node.jstree', function (e, data) {
+        alert("wwww");
+    });
+
+
+    var opciones = {aSep: '', aDec: ',', vMin: '1', vMax: '100'};
+    $('#cantidad_subpresupuesto').autoNumeric('init', opciones);
 
     var organismo = document.getElementById("id_organismo").value;
     var usuario = document.getElementById("id_usuario").value;
 
-    var latabla = $('#presupuestos').dataTable( {
+    latabla = $('#presupuestos').dataTable( {
         "ajax": RutaBase + "/Servicios/Press.php/Presupuesto?idorganismo="+organismo+"&idusuario="+usuario,       
         "columns": [
             { "data": "idpresupuesto" },
@@ -33,9 +120,21 @@ $(document).ready( function () {
     $('<a href="'+RutaBase+'/Presupuesto/Registro" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
 
     $("#presupuestos tbody").on('click', '.elim', function( evt ) {
-        
-        var col = $(this).parent().parent().children().eq(0);
-        alert("Eliminar "+col.html());
+
+        var lafila = $(this).closest('tr');
+        var indice = $("#presupuestos tbody tr").index(lafila);  
+
+        if(lafila.find("li").length > 0)
+        {
+            var correccion = (indice - 1);
+            var fil = $("#presupuestos tbody").children().eq(correccion);
+            alert("Eliminar"+fil.children().eq(0).html());
+        }
+        else
+        {
+            var fil = $("#presupuestos tbody").children().eq(indice);
+            alert("Eliminar"+fil.children().eq(0).html());
+        }  
     });
 
     $("#presupuestos tbody").on('click', '.edit', function( evt ) {
@@ -45,10 +144,120 @@ $(document).ready( function () {
     });
 
     $("#presupuestos tbody").on('click', '.opp', function( evt ) {
+
+        var lafila = $(this).closest('tr');
+        var indice = $("#presupuestos tbody tr").index(lafila);  
+
+        if(lafila.find("li").length > 0)
+        {
+            var correccion = (indice - 1);
+            var fil = $("#presupuestos tbody").children().eq(correccion);   
+        }
+        else        
+            var fil = $("#presupuestos tbody").children().eq(indice);            
+     
         
-        var col = $(this).parent().parent().children().eq(0);
-        alert("Abrir "+col.html());
+        var col = fil.children().eq(0);
+        
+        $("#pres_seleccionado").val(col.html());
+        ListarSubPresupuesto(col.html());
+        $('#subpresupuestos').modal('show');
     });
     
 
 } );
+
+function Actualizar_Tabla() 
+{
+    latabla.api().ajax.reload();
+
+    //table.ajax.url( 'newData.json' ).load();
+}
+
+function Mostrar() {
+    MostrarSubTodos();
+    OcultarSubTodos();
+    $("#nuevo_subpresupuesto").hide();   
+    $("#nuevo_form").show("fast");
+}
+
+function Ocultar() {
+    $("#nuevo_form").hide("fast");
+    $("#nuevo_subpresupuesto").show();
+}
+
+function OcultarSubTodos () {
+    $("#lista_subpresupuesto").children().children('.subitempres').hide();
+}
+
+function MostrarSubTodos () {
+    $("#lista_subpresupuesto").children().children('.texto_subitem').show();
+}
+
+function OcultarSub (cual) {
+    var pad = $(cual).parent().parent().parent().parent();
+    pad.children('.subitempres').hide("fast");
+    pad.children('.texto_subitem').show();
+}
+
+function EditarSubPresupuesto (item) {
+    Ocultar();
+    MostrarSubTodos();
+    OcultarSubTodos();
+    var listaitem = $(item).parent().parent().parent();
+    $(listaitem).children('.texto_subitem').hide();   
+    $(listaitem).children('.subitempres').show("fast");    
+}
+
+function EliminarSubPresupeusto (idsub) {
+    if (confirm('Esta Seguro que desea eliminar el supresupuesto?\nUna ves eliminado no se podra recuperar!')) {
+    // Save it!
+    } else {
+        // Do nothing!
+    }
+}
+
+function Actualizar () {
+    var sel = $("#pres_seleccionado").val();
+    if(sel != "0")
+    {
+        ListarSubPresupuesto(sel);
+    }
+}
+
+function ListarSubPresupuesto(idpres) 
+{
+    var lista = $("#lista_subpresupuesto");
+    lista.empty();
+    lista.append("<div class='list-group-item'><img class='loading_icon1' src='"+RutaBase+"/Vista/Imagenes/loading.gif'></div>");    
+
+    $.ajax({
+        type: "GET",
+        url: "/SGPIP/Servicios/Subpress.php/SubPresupuesto?idpresupuesto="+idpres+"&idusuario=1&idorganismo=1",
+        success: function (data) 
+        { 
+            lista.empty();
+
+            if(data.length>0)
+            {
+                for (var dato in data) {  
+                    lista.append("<div class='list-group-item'><div class='texto_subitem'><span class='pull-right'><span class='badge'>"+data[dato]["idsubpresupuesto"]
+                        +"</span>&nbsp;<button class='btn btn-xs btn-info' onclick='EditarSubPresupuesto(this);'><span class='glyphicon glyphicon-pencil'></span></button>&nbsp;<button class='btn btn-xs btn-danger' onclick='EliminarSubPresupeusto("+data[dato]["idsubpresupuesto"]
+                        +");'><span class='glyphicon glyphicon-trash'></span></button></span><a href='"+RutaBase+"/Subpresupuesto/Editar/"+data[dato]["idsubpresupuesto"]+"'>"+data[dato]["descripcion"]
+                        +"</a></div>"+
+                        "<div class='panel panel-info subitempres' style='display: none; margin: -10px -15px;'><div class='panel-heading'><strong>EDITAR SUB-PRESUPUESTO</strong><div class='pull-right'><button class='close miniclose' onclick='OcultarSub(this);'><span class='glyphicon glyphicon-remove'></span></button></div></div><div class='panel-body' style='padding: 15px 15px 0px 15px;'> "+
+                        "<div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Descripción</label><span class='formulario_recomendacion'>Ingrese el Nombre</span><div class='formulario_control'><input class='form-control' type='text' value='"+data[dato]["descripcion"]+"'></div></div></div><div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Cantidad</label><span class='formulario_recomendacion'>1,2,3,...</span><div class='formulario_control'><input type='text' class='form-control' id='cantidad_subpresupuesto' value='1'/><span class='help-block'></span></div></div></div>"+
+                        "</div><div class='panel-footer'><div class='pull-right'><button type='button' class='btn btn-success' onclick='.'>Guardar</button>&nbsp;<button type='button' class='btn btn-default' onclick='OcultarSub(this);'>Cancelar</button></div><div class='clearfix'></div></div></div></div>"); 
+                };
+            }
+            else
+            {
+                lista.append("<div class='list-group-item'>Vacio</div>");
+            }             
+        },
+        error: function(result) {
+            lista.empty();
+            lista.append("<div class='list-group-item'>"+JSON.stringify(result)+"</div>");
+        }
+    });       
+}   

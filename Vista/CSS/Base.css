@@ -185,7 +185,7 @@ header
 	background-color: #FFFFFF;
 	overflow: hidden;
 	display: block;
-	z-index: 6;
+	z-index: 8;
 	position: relative;
 	-webkit-transition:100ms linear;
 	-moz-transition:100ms linear;

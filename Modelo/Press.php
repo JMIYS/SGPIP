@@ -5,7 +5,7 @@ class ModeloPress extends ModeloBase
 {
     public function Listar($vars)
     {
-        $this->consulta = "CALL spListarPresupuestos(".$vars["idorganismo"].",".$vars["idusuario"].")";
+        $this->consulta = "CALL spListar_Presupuestos(".$vars["idorganismo"].",".$vars["idusuario"].")";
         $this->consultar();        
         return $this->rows;
     }
