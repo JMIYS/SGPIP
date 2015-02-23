@@ -2,8 +2,8 @@
 
 $root = $_SERVER["DOCUMENT_ROOT"];
 
-require_once($root."/SGPIP/Modelo/Ubicacion.php");
-$Modelo = new ModeloUbicacion();
+require_once($root."/SGPIP/Modelo/Moneda.php");
+$Modelo = new ModeloMoneda();
 
 require 'Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
@@ -14,15 +14,16 @@ $request = $app->request;
 $response = $app->response;
 
 //-------------------------------------------------------------------GET
-$app->get("/Ubicacion", function () use ($request, $Modelo){
+$app->get("/Listar", function () use ($request, $Modelo){
 
-    $resultado = $Modelo->ListarDepartamento();
+    $resultado = $Modelo->Listar();
     if(count($resultado)>0)
         echo "{\"data\":" .json_encode($resultado). "}"; 
     else
         echo "";
 
 });
+
 
 $app->run();
 

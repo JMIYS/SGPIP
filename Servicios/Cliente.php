@@ -16,11 +16,16 @@ $response = $app->response;
 //-------------------------------------------------------------------GET
 $app->get("/Cliente", function () use ($request, $Modelo){
 
-    $resultado = $Modelo->Mostrar_clientes();
+    $usuario = $request->get('idusuario');
+    $organismo = $request->get('idorganismo');
+    
+    $arrayName = array('idusuario' => $usuario, 'idorganismo' => $organismo);
+
+    $resultado = $Modelo->Mostrar_clientes($arrayName);
     if(count($resultado)>0)
         echo "{\"data\":" .json_encode($resultado). "}"; 
     else
-        echo "";
+        echo "{}";
 
 });
 

@@ -3,11 +3,10 @@ require_once('Base.php');
 
 class ModeloCliente extends ModeloBase
 {
-    //------------usuario--------
-    public function Mostrar_clientes()
+    public function Mostrar_clientes($vars)
     {
-        $this->consulta = "SELECT *from tcliente";
-        $this->consultar();        
+        $this->consulta = "SELECT * FROM tcliente WHERE idorganismo=".$vars["idorganismo"]." AND idusuario=".$vars["idusuario"].";";
+        $this->consultar();         
         return $this->rows;       
     }   
 
