@@ -6,8 +6,7 @@
 			<i class="fa fa-list"></i><h3>Registro&nbsp; - &nbsp;<span class="negrita">Agregar Presupuesto</span></h3>
 		</div>
 	</div>
-
-
+	<input type="hidden" id="resultado" value="{elemento_resultado}">
 
 	<form id="elformulario" method="POST" action="#" onsubmit="return Validar_Formulario();">
 		<div class="Box_1">
@@ -119,14 +118,17 @@
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Costo Directo</span>
 											<input class="form-control numerr" type="text" style="width:100%;" id="PBaseDirecto" name="PBaseDirecto" value="0">
+											<span class="help-block"></span>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Costo Indirecto</span>
 											<input class="form-control numerr" type="text" style="width:100%;" id="PBaseIndirecto" name="PBaseIndirecto" value="0">
+											<span class="help-block"></span>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Total</span>
 											<input class="form-control numerr" type="text" style="width:100%;" id="PBaseTotal" name="PBaseTotal" value="0" >
+											<span class="help-block"></span>
 										</div>
 									</div>
 								</div>

@@ -15,26 +15,37 @@ class ControladorPresupuesto extends ControladorBase
     {
         $this->ComprobarLogin();
 
-        require_once('Modelo/Presupuesto.php');        
-        $Presupuesto=new ModeloPresupuesto;
-        require_once('Modelo/Login.php');        
-        $Login=new ModeloLogin;                
-        if(count($_POST)>0)
-        {            
-            $_POST["idOrganismo"]=$Login->GetOrganismo();           
-            $Presupuesto->guardar($_POST);            
-        }
+        if($_POST)
+        {
+            require_once('Modelo/Presupuesto.php');        
+            $Presupuesto = new ModeloPresupuesto; 
 
-        $this->Header = $this->CargarHeader(file_get_contents("Vista/Secciones/Header.html"));
-        $this->Contenido = file_get_contents("Vista/Contenido/Presupuesto/Registro.html"); 
+            if($Presupuesto->Guardar($_POST))            
+                $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),1);            
+            else            
+                $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),$Presupuesto->mensaje);
+       }             
+        else
+        {
+            $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),0);
+        }
+       
+
+        $this->Header = $this->CargarHeader(file_get_contents("Vista/Secciones/Header.html"));       
         $this->User = file_get_contents("Vista/Secciones/User.html");
-        $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
+        $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html"));  
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
         $csss=array('dataTables.responsive', 'Nuevo_Tabla', 'Elementos','Presupuesto','toastr');
         $jsss=array('jquery.dataTables.min', 'dataTables.responsive.min', 'autoNumeric', 'Presupuesto','toastr');
         $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;
     }
+
+    private function Resultado($pagina, $ress)
+    {
+        $diccionario_resultado = array('{elemento_resultado}'=>$ress); 
+        return str_replace(array_keys($diccionario_resultado), array_values($diccionario_resultado), $pagina);        
+    } 
 
     protected function Controles()//La accion por defecto para inicio (si no se envian parametros)
     {

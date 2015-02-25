@@ -1,9 +1,3 @@
-/*function AgregarSub()
-{
-	 toastr.options.timeOut = 2500;
-	 toastr.success('Probando','Satisfecho');
-}*/
-
 $(document).ready( function () {
 
 	$('[data-toggle="tooltip"]').tooltip();
@@ -14,9 +8,6 @@ $(document).ready( function () {
 	ListaDepartamento();
 	ListaProvincia(1);	
 	ListaMoneda();
-
-
-
 
 	var organismo = document.getElementById("id_organismo").value;
     var usuario = document.getElementById("id_usuario").value;
@@ -66,9 +57,20 @@ $(document).ready( function () {
       
     });
 
-
-
-
+    if($("#resultado").val() != "0") 
+	{
+		if($("#resultado").val() == "1")
+		{
+			toastr.options.timeOut = 3500;
+			toastr.success('Se registró correctamente','REGISTRADO');
+		}
+		else
+		{
+			toastr.options.timeOut = 3500;
+			toastr.error('ERROR',$("#resultado").val());
+		}		
+	}
+	
 });
 
 
@@ -187,10 +189,11 @@ function Validar_Formulario() {
     });
     
     if(!correcto)
+    {
     	alert("Ingrese todos los datos");
+    	return false;
+    }    	
     else 
-    	alert("Correcto");
-    
-    return false;
+		return true;
 
 }
