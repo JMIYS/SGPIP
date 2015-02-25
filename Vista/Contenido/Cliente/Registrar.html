@@ -1,6 +1,6 @@
 <div class="Bloque">
 
-	<form action="" method="POST">
+	<form action="" method="POST" id="registro_cliente" onsubmit="return Validar_Formulario();">
 		<div class="Box_1">
 			<div class="Tit">
 				<h4>Registrar <span class="segundo">Cliente</span></h4>
@@ -14,7 +14,7 @@
 								<label class="formulario_label">Razon</label>
 								<span class="formulario_recomendacion">Social</span>
 								<div class="formulario_control">
-									<input type="text" style="width: 100%;" class="form-control" name="txt_razon_social">
+									<input type="text" style="width: 100%;" class="form-control requerido" name="txt_razon_social">
 								</div>
 							</div>
 						</div>
@@ -43,14 +43,16 @@
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">RUC</label>
 								<div class="formulario_control">
-									<input type="text" id="rucc" disabled class="form-control" style="width: 100%;" name="txt_ruc">
+									<input type="text" id="rucc" disabled class="form-control validar_numero" style="width: 100%;" name="txt_ruc">
+									<span class="help-block"></span>
 								</div>
 							</div>
 
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">DNI</label>
 								<div class="formulario_control">
-									<input type="text" id="dnii"  class="form-control" style="width: 100%;" name="dni">
+									<input type="text" id="dnii"  class="form-control validar_numero" style="width: 100%;" name="txt_dni">
+									<span class="help-block"></span>
 								</div>
 							</div>
 						</div>	
@@ -58,7 +60,7 @@
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Dirección</label>
 								<div class="formulario_control">
-									<input type="text" style="width: 100%;" class="form-control" name="direccion">
+									<input type="text" style="width: 100%;" class="form-control" name="txt_direccion">
 								</div>
 							</div>
 						</div>
@@ -89,13 +91,15 @@
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">Celular</label>
 								<div class="formulario_control">
-									<input type="text" class="form-control" name="txt_celular">
+									<input type="text" class="form-control validar_numero" name="txt_celular">
+									<span class="help-block"></span>
 								</div>
 							</div>
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">Teñefono fijo</label>
 								<div class="formulario_control">
-									<input type="text" class="form-control" name="txt_fijo">
+									<input type="text" class="form-control validar_numero" name="txt_fijo">
+									<span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -118,8 +122,8 @@
 			<div class="Bas">			
 
 				<div class="pull-right">
-					<input type="submit"name="btn_registrar" value="Registrar">
-					<button >Regresar</button>
+					<input type="submit"name="btn_registrar" value="Registrar" class="btn btn-default" >
+					<a href="{elemento_ruta}/Presupuesto/Registro" class="btn btn-default" >Regresar</a>
 				</div>
 			</div>
 		</div>

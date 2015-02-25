@@ -30,7 +30,7 @@ $(document).ready( function () {
     });
 
 
-    $('<a href="'+RutaBase+'/Presupuesto/Registro" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
+    $('<a href="'+RutaBase+'/Cliente/Registrar" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
     
 	$("#cliente_mostrar tbody").on('click', 'td', function( evt ) {
        	

@@ -18,8 +18,18 @@ class ControladorCliente extends ControladorBase
         {
             require_once('Modelo/Cliente.php');
             $varo=new ModeloCliente();
+            if (!isset($_POST["txt_dni"])) {
+                $_POST["txt_dni"]="null";
+            }
+            if (!isset($_POST["txt_ruc"])) {
+                $_POST["txt_ruc"]="null";
+            }
+            $varo->InsertarCliente($_POST);
+            //print_r($_POST["txt_razon_social"].",".$_POST["txt_abreviatura"].",".$_POST["txt_descripcion"].",".$_POST["cmb_persona"].",".$_POST["txt_ruc"].",".$_POST["txt_dni"].",".$_POST["txt_correo"].",".$_POST["txt_celular"].",".$_POST["txt_fijo"].",".$_POST["txt_direccion"].",".$_POST["txt_pagina"]);
             
-            $this->Contenido = file_get_contents("Vista/Contenido/Cliente/Mensaje.html"); 
+            echo $varo->mensaje;
+            
+            $this->Contenido = file_get_contents("Vista/Contenido/Cliente/mensaje.html"); 
 
         }
         else{
@@ -34,8 +44,8 @@ class ControladorCliente extends ControladorBase
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
 
         $csss = array('cliente_registrar', 'Elementos');
-        //$jsss = array('cliente_registro', 'Elementos');
-        $pagina = $this->MostarElementos("cliente_registro",$csss); 
+        $jsss = array('cliente_registro', 'autoNumeric');
+        $pagina = $this->MostarElementos($jsss,$csss); 
         print $pagina;
 
 

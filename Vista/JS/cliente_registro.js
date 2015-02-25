@@ -1,3 +1,7 @@
+$(document).ready( function () {
+    var opciones = {aSep: '', aDec: ',', vMin: '1', vMax: '999999999'};
+    $('.validar_numero').autoNumeric('init', opciones);
+});
 function habilitar_dniruc(a){
 	//var x = document.getElementById("browsers").value;
 	//alert(a.value);
@@ -17,4 +21,45 @@ function habilitar_dniruc(a){
     };
     
 }
+
+function Validar_Formulario() { 
+
+    var $inputs = $("#registro_cliente input.requerido");
+    var $textsarea = $("#registro_cliente textarea.requerido");
+    var correcto=true;
+    //Intputs
+    $inputs.each(function() {
+        
+        if($(this).val() == "")
+        {
+            $(this).addClass("tiene_error" );
+            correcto=false;
+        }
+        else        
+            $(this).removeClass("tiene_error" );                
+        
+    });
+    //Textarea
+    $textsarea.each(function() {
+        
+        if($(this).val() == "")
+        {
+            $(this).addClass("tiene_error" );
+            correcto=false;
+        }
+        else        
+            $(this).removeClass("tiene_error" );                
+        
+    });
+    
+    if(!correcto)
+    {
+        alert("Ingrese todos los datos");
+        return false;
+    }       
+    else 
+        return true;
+
+}
+
 
