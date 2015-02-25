@@ -13,7 +13,7 @@ $app->contentType('application/json');
 $request = $app->request;
 $response = $app->response;
 
-
+//-----------------------GET - LISTAR
 $app->get("/SubPresupuesto", function () use ($request, $Modelo){
 
     $presupeusto = $request->get('idpresupuesto');
@@ -29,7 +29,36 @@ $app->get("/SubPresupuesto", function () use ($request, $Modelo){
 
 });
 
+//-----------------------POST - AGREGAR
+$app->post('/SubPresupuesto', function() use($request, $Modelo) {
 
+    $body = json_decode($request->getBody(), true);    
+    $id = $Modelo->Guardar($body);    
+    
+    if($id != 0)    
+        $resultado = array('Estado' => true, 'Mensaje' => 'Correcto', 'Codigo_Int' => $id, 'Codigo_String' => '');    
+    else    
+        $resultado = array('Estado' => false, 'Mensaje' => $Modelo->mensaje, 'Codigo_Int' => 0, 'Codigo_String' => '');
+    echo json_encode($resultado);
+});
+
+//-----------------------DELETE - ELIMINAR
+$app->delete('/SubPresupuesto', function() use($request, $Modelo) {
+
+    $body = json_decode($request->getBody(), true); 
+    $id = $Modelo->Eliminar($body);    
+
+    echo json_encode($id);
+});
+
+//-----------------------PUT - ACTUALIZAR
+$app->put('/SubPresupuesto', function() use($request, $Modelo) {
+
+    $body = json_decode($request->getBody(), true); 
+    $id = $Modelo->Editar($body);    
+
+    echo json_encode($id);
+});
 
 $app->run();
 
