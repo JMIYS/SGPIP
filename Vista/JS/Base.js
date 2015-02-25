@@ -98,6 +98,7 @@ function MySidebar(id)
 	});	
 }
 
+
 $(document).ready( function () {
     
     MySidebar("#panelbar");

@@ -12,20 +12,16 @@ class ModeloUbicacion extends ModeloBase
     }   
     public function ListarProvincia($vars)
     {
-        $this->consulta = "SELECT *from tprovincia";
-        return $this->Ejecutar();        
+        $this->consulta = "SELECT *from tprovincia where iddepartamento=".$vars["iddepartamento"].";";
+        $this->consultar();        
+        return $this->rows;        
     }  
-    public function ListarDitrito($vars)
+    public function ListarDistrito($vars)
     {
-        $this->consulta = "SELECT *from tdistrito";
-        return $this->Ejecutar();        
-    }  
-
-    public function ModificarPassword($vars)
-    {
-        $this->consulta = "UPDATE usuario SET password = '".$vars['password']."' WHERE idusuario = ".$vars['idusuario'].";";
-        return $this->Ejecutar();        
-    }   
+        $this->consulta = "SELECT *from tdistrito where iddepartamento=".$vars["iddepartamento"]." and idprovincia=".$vars["idprovincia"].";";
+        $this->consultar();        
+        return $this->rows;         
+    }
 
     function __destruct() {  
     unset($this);

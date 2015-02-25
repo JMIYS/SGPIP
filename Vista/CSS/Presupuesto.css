@@ -4,6 +4,19 @@
 	margin: auto;
 	
 }
+
+.forme_tabla
+{
+	display: table;
+	width: 100%;
+}
+
+.forme_tabla > .form_cell
+{
+	display: table-cell;
+	vertical-align: top;
+}
+
 .fila3
 {
 	width: 30%;

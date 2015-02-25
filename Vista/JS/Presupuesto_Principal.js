@@ -1,4 +1,5 @@
 var latabla;
+var _idpresupuesto;
 
 $(document).ready( function () {
 
@@ -118,7 +119,7 @@ $(document).ready( function () {
     });
 
     $('<a href="'+RutaBase+'/Presupuesto/Registro" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
-
+    //ELIMINAR
     $("#presupuestos tbody").on('click', '.elim', function( evt ) {
 
         var lafila = $(this).closest('tr');
@@ -128,21 +129,45 @@ $(document).ready( function () {
         {
             var correccion = (indice - 1);
             var fil = $("#presupuestos tbody").children().eq(correccion);
-            alert("Eliminar"+fil.children().eq(0).html());
+
+            if (confirm('Esta seguro que desea eliminar el Presupuesto?\nSe eliminaran todos los datos correspondientes a este.')) {
+                alert("Eliminar"+fil.children().eq(0).html());
+            } else {
+                
+            }
+           
         }
         else
         {
             var fil = $("#presupuestos tbody").children().eq(indice);
-            alert("Eliminar"+fil.children().eq(0).html());
+            if (confirm('Esta seguro que desea eliminar el Presupuesto?\nSe eliminaran todos los datos correspondientes a este.')) {
+                alert("Eliminar"+fil.children().eq(0).html());
+            } else {
+                
+            }    
         }  
     });
 
+    //MODIFICAR
     $("#presupuestos tbody").on('click', '.edit', function( evt ) {
-        
-        var col = $(this).parent().parent().children().eq(0);
-        alert("Editar "+col.html());
+
+        var lafila = $(this).closest('tr');
+        var indice = $("#presupuestos tbody tr").index(lafila); 
+
+        if(lafila.find("li").length > 0)
+        {
+            var correccion = (indice - 1);
+            var fil = $("#presupuestos tbody").children().eq(correccion);
+            window.location.href = RutaBase+"/Presupuesto/Modificar/"+fil.children().eq(0).html();
+        }
+        else
+        {
+            var fil = $("#presupuestos tbody").children().eq(indice);
+            window.location.href = RutaBase+"/Presupuesto/Modificar/"+fil.children().eq(0).html();
+        }  
     });
 
+    //ABRIR
     $("#presupuestos tbody").on('click', '.opp', function( evt ) {
 
         var lafila = $(this).closest('tr');
@@ -206,12 +231,47 @@ function EditarSubPresupuesto (item) {
     OcultarSubTodos();
     var listaitem = $(item).parent().parent().parent();
     $(listaitem).children('.texto_subitem').hide();   
-    $(listaitem).children('.subitempres').show("fast");    
+    $(listaitem).children('.subitempres').show("fast");
+}
+
+function GuardarEditadoSubPresupuesto(idupd) {
+    var dataString = {
+        idsubpresupuesto: idupd,
+        descripcion: $('#cambio_descripcion_subpresupuesto'+idupd+'').val()
+    };        
+   $.ajax({
+        url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto",
+        type: "PUT",
+        data: JSON.stringify(dataString),
+        async: false,
+        success: function (data) {       
+            Actualizar(); 
+        },
+        error: function(result) {
+            alert('Error Al Editar');
+        },
+        cache: false
+    });
 }
 
 function EliminarSubPresupeusto (idsub) {
-    if (confirm('Esta Seguro que desea eliminar el supresupuesto?\nUna ves eliminado no se podra recuperar!')) {
-    // Save it!
+    if (confirm('Esta seguro que desea eliminar el Subpresupuesto?\nUna ves eliminado no se podra recuperar!.')) {
+        var dataString = {
+            idsubpresupuesto: idsub
+        };        
+       $.ajax({
+            url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto",
+            type: "DELETE",
+            data: JSON.stringify(dataString),
+            async: true,
+            success: function (data) {       
+                Actualizar();               
+            },
+            error: function(result) {
+                alert('Error Al Eliminar');
+            },
+            cache: false
+        })
     } else {
         // Do nothing!
     }
@@ -225,15 +285,44 @@ function Actualizar () {
     }
 }
 
+function GuardarSubPresupuesto() {
+    if ($('#descripcion_subpresupuesto').val() != '') {
+        var dataString = {
+            descripcion: $('#descripcion_subpresupuesto').val(),
+            idpresupuesto: _idpresupuesto,
+            idorganismo: 1,
+            idusuario: 1
+        };        
+       $.ajax({
+            url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto",
+            type: "POST",
+            data: JSON.stringify(dataString),
+            async: true,
+            success: function (data) {       
+                Ocultar();
+                $('#descripcion_subpresupuesto').val('');
+                Actualizar();               
+            },
+            error: function(result) {
+                alert('Error Al Eliminar');
+            },
+            cache: false
+        })
+    } else {
+        alert('Ingrese el campo de descripcion');
+    }
+}
+
 function ListarSubPresupuesto(idpres) 
 {
+    _idpresupuesto = idpres;
     var lista = $("#lista_subpresupuesto");
     lista.empty();
     lista.append("<div class='list-group-item'><img class='loading_icon1' src='"+RutaBase+"/Vista/Imagenes/loading.gif'></div>");    
 
     $.ajax({
         type: "GET",
-        url: "/SGPIP/Servicios/Subpress.php/SubPresupuesto?idpresupuesto="+idpres+"&idusuario=1&idorganismo=1",
+        url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto?idpresupuesto="+idpres+"&idusuario=1&idorganismo=1",
         success: function (data) 
         { 
             lista.empty();
@@ -242,12 +331,11 @@ function ListarSubPresupuesto(idpres)
             {
                 for (var dato in data) {  
                     lista.append("<div class='list-group-item'><div class='texto_subitem'><span class='pull-right'><span class='badge'>"+data[dato]["idsubpresupuesto"]
-                        +"</span>&nbsp;<button class='btn btn-xs btn-info' onclick='EditarSubPresupuesto(this);'><span class='glyphicon glyphicon-pencil'></span></button>&nbsp;<button class='btn btn-xs btn-danger' onclick='EliminarSubPresupeusto("+data[dato]["idsubpresupuesto"]
-                        +");'><span class='glyphicon glyphicon-trash'></span></button></span><a href='"+RutaBase+"/Subpresupuesto/Editar/"+data[dato]["idsubpresupuesto"]+"'>"+data[dato]["descripcion"]
+                        +"</span>&nbsp;<button class='btn btn-xs btn-info' onclick='EditarSubPresupuesto(this);'><span class='glyphicon glyphicon-pencil'></span></button>&nbsp;<button class='btn btn-xs btn-danger' onclick='EliminarSubPresupeusto("+data[dato]["idsubpresupuesto"]+");'><span class='glyphicon glyphicon-trash'></span></button></span><a href='"+RutaBase+"/Subpresupuesto/Editar/"+data[dato]["idsubpresupuesto"]+"'>"+data[dato]["descripcion"]
                         +"</a></div>"+
                         "<div class='panel panel-info subitempres' style='display: none; margin: -10px -15px;'><div class='panel-heading'><strong>EDITAR SUB-PRESUPUESTO</strong><div class='pull-right'><button class='close miniclose' onclick='OcultarSub(this);'><span class='glyphicon glyphicon-remove'></span></button></div></div><div class='panel-body' style='padding: 15px 15px 0px 15px;'> "+
-                        "<div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Descripción</label><span class='formulario_recomendacion'>Ingrese el Nombre</span><div class='formulario_control'><input class='form-control' type='text' value='"+data[dato]["descripcion"]+"'></div></div></div><div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Cantidad</label><span class='formulario_recomendacion'>1,2,3,...</span><div class='formulario_control'><input type='text' class='form-control' id='cantidad_subpresupuesto' value='1'/><span class='help-block'></span></div></div></div>"+
-                        "</div><div class='panel-footer'><div class='pull-right'><button type='button' class='btn btn-success' onclick='.'>Guardar</button>&nbsp;<button type='button' class='btn btn-default' onclick='OcultarSub(this);'>Cancelar</button></div><div class='clearfix'></div></div></div></div>"); 
+                        "<div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Descripción</label><span class='formulario_recomendacion'>Ingrese el Nombre</span><div class='formulario_control'><input class='form-control' id='cambio_descripcion_subpresupuesto"+data[dato]["idsubpresupuesto"]+"' type='text' value='"+data[dato]["descripcion"]+"'></div></div></div><div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Cantidad</label><span class='formulario_recomendacion'>1,2,3,...</span><div class='formulario_control'><input type='text' class='form-control' id='cantidad_subpresupuesto' value='1'/><span class='help-block'></span></div></div></div>"+
+                        "</div><div class='panel-footer'><div class='pull-right'><button type='button' class='btn btn-success' onclick='GuardarEditadoSubPresupuesto("+data[dato]["idsubpresupuesto"]+");'>Guardar</button>&nbsp;<button type='button' class='btn btn-default' onclick='OcultarSub(this);'>Cancelar</button></div><div class='clearfix'></div></div></div></div>"); 
                 };
             }
             else
