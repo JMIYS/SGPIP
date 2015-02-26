@@ -24,6 +24,25 @@ class ControladorCliente extends ControladorBase
             if (!isset($_POST["txt_ruc"])) {
                 $_POST["txt_ruc"]="null";
             }
+            if (isset($_POST["cmb_persona"])) {
+                if($_POST["cmb_persona"]=="1"){
+                    $_POST["cmb_persona"]="NATURAL";
+                }
+            }
+            if (isset($_POST["cmb_persona"])) {
+                if($_POST["cmb_persona"]=="2"){
+                    $_POST["cmb_persona"]="JURIDICA";
+                }
+            }
+            if (!isset($_POST["Abreviatura"])) {
+                $_POST["Abreviatura"]="null";
+            }
+            if (!isset($_POST["Dirección"])) {
+                $_POST["Dirección"]="null";
+            }
+            if (!isset($_POST["txt_descripcion"])) {
+                $_POST["txt_descripcion"]="null";
+            }
             $varo->InsertarCliente($_POST);
             //print_r($_POST["txt_razon_social"].",".$_POST["txt_abreviatura"].",".$_POST["txt_descripcion"].",".$_POST["cmb_persona"].",".$_POST["txt_ruc"].",".$_POST["txt_dni"].",".$_POST["txt_correo"].",".$_POST["txt_celular"].",".$_POST["txt_fijo"].",".$_POST["txt_direccion"].",".$_POST["txt_pagina"]);
             

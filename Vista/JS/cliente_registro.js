@@ -12,11 +12,17 @@ function habilitar_dniruc(a){
     	
     	$( "#dnii" ).prop( "disabled", false );
     	$( "#rucc" ).prop( "disabled", true );
+        $( "#dnii" ).addClass("requerido" );
+        $( "#rucc" ).removeClass("requerido" );
+        $( "#rucc" ).removeClass("tiene_error" );
     	//alert("Natural");
     }
     else if (a.value=="2") {
     	$( "#dnii" ).prop( "disabled", true );
     	$( "#rucc" ).prop( "disabled", false );
+        $( "#rucc" ).addClass("requerido");
+        $( "#dnii" ).removeClass("requerido");
+        $( "#dnii" ).removeClass("tiene_error" );
     	//alert("Juridica");
     };
     

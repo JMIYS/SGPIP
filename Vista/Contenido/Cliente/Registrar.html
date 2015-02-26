@@ -11,8 +11,8 @@
 					<div class="formulario_elemento col-md-6">
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label">Razon</label>
-								<span class="formulario_recomendacion">Social</span>
+								<label class="formulario_label">Razon Social</label>
+								<span class="formulario_recomendacion">Nombre del cliente</span>
 								<div class="formulario_control">
 									<input type="text" style="width: 100%;" class="form-control requerido" name="txt_razon_social">
 								</div>
@@ -24,8 +24,8 @@
 								<span class="formulario_recomendacion">Natural/Juridica</span>
 								<div class="formulario_control" >
 									<select id="browsers" class="form-control" onchange="habilitar_dniruc(this);" name="cmb_persona">
-									   	<option value="1"> Natural </option> 
-									   	<option value="2"> Juridica </option> 
+									   	<option value="1"> NATURAL </option> 
+									   	<option value="2"> JURIDICA </option> 
 									</select>
 								</div>
 							</div>
@@ -51,7 +51,7 @@
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">DNI</label>
 								<div class="formulario_control">
-									<input type="text" id="dnii"  class="form-control validar_numero" style="width: 100%;" name="txt_dni">
+									<input type="text" id="dnii"  class="form-control validar_numero requerido" style="width: 100%;" name="txt_dni">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Descripción</label>
-								<span class="formulario_recomendacion">Ejemplo</span>
+								<span class="formulario_recomendacion">Descripcion del cliente</span>
 								<div class="formulario_control">
 									<textarea rows="5" class="txtarea form-control" name="txt_descripcion">
 									
@@ -80,8 +80,8 @@
 						</div>	
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label">Correo</label>
-								<span class="formulario_recomendacion">Electrónico</span>
+								<label class="formulario_label">Correo Electrónico</label>
+								<span class="formulario_recomendacion">ejemplo@ejemplo.com</span>
 								<div class="formulario_control">
 									<input type="text" class="form-control" name="txt_correo">
 								</div>
@@ -105,8 +105,8 @@
 						</div>
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label">Pagina</label>
-								<span class="formulario_recomendacion">Web</span>
+								<label class="formulario_label">Pagina Web</label>
+								<span class="formulario_recomendacion">Direccion de la pagina web del cliente</span>
 								<div class="formulario_control">
 									<input type="text" style="width: 100%;" class="form-control" name="txt_pagina">
 								</div>
