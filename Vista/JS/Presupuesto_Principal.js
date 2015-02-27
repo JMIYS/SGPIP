@@ -235,23 +235,28 @@ function EditarSubPresupuesto (item) {
 }
 
 function GuardarEditadoSubPresupuesto(idupd) {
-    var dataString = {
-        idsubpresupuesto: idupd,
-        descripcion: $('#cambio_descripcion_subpresupuesto'+idupd+'').val()
-    };        
-   $.ajax({
-        url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto",
-        type: "PUT",
-        data: JSON.stringify(dataString),
-        async: false,
-        success: function (data) {       
-            Actualizar(); 
-        },
-        error: function(result) {
-            alert('Error Al Editar');
-        },
-        cache: false
-    });
+    if ($('#cambio_descripcion_subpresupuesto'+idupd+'').val() != '') {
+        var dataString = {
+            idsubpresupuesto: idupd,
+            descripcion: $('#cambio_descripcion_subpresupuesto'+idupd+'').val(),
+            cantidad: $('#cambio_cantidad_subpresupuesto'+idupd+'').val()
+        };        
+       $.ajax({
+            url: RutaBase+"/Servicios/Subpress.php/SubPresupuesto",
+            type: "PUT",
+            data: JSON.stringify(dataString),
+            async: false,
+            success: function (data) {       
+                Actualizar(); 
+            },
+            error: function(result) {
+                alert('Error Al Editar');
+            },
+            cache: false
+        });
+   } else {
+        alert('Campo Vacio...Ingrese Descripción');
+   }
 }
 
 function EliminarSubPresupeusto (idsub) {
@@ -264,8 +269,19 @@ function EliminarSubPresupeusto (idsub) {
             type: "DELETE",
             data: JSON.stringify(dataString),
             async: true,
-            success: function (data) {       
-                Actualizar();               
+            success: function (data) {   
+                if (data == true)
+                {
+                    toastr.options.timeOut = 3500; // 2.5s
+                    toastr.success('Eliminado Exitosamente','Correcto');
+                    Actualizar();
+                }
+                else
+                {
+                    toastr.options.timeOut = 3500; // 2.5s
+                    //toastr.warning('Probando','Peligro');
+                    toastr.error('Si contiene Titulos','No se Puede Eliminar');
+                }           
             },
             error: function(result) {
                 alert('Error Al Eliminar');
@@ -290,6 +306,7 @@ function GuardarSubPresupuesto() {
         var dataString = {
             descripcion: $('#descripcion_subpresupuesto').val(),
             idpresupuesto: _idpresupuesto,
+            cantidad: $('#cantidad_subpresupuesto').val(),
             idorganismo: 1,
             idusuario: 1
         };        
@@ -301,6 +318,8 @@ function GuardarSubPresupuesto() {
             success: function (data) {       
                 Ocultar();
                 $('#descripcion_subpresupuesto').val('');
+                toastr.options.timeOut = 3500; // 2.5s
+                toastr.success('Guardado Exitosamente','Correcto');
                 Actualizar();               
             },
             error: function(result) {
@@ -317,6 +336,7 @@ function ListarSubPresupuesto(idpres)
 {
     _idpresupuesto = idpres;
     var lista = $("#lista_subpresupuesto");
+    var opc = {aSep: '', aDec: ',', vMin: '1', vMax: '100'};
     lista.empty();
     lista.append("<div class='list-group-item'><img class='loading_icon1' src='"+RutaBase+"/Vista/Imagenes/loading.gif'></div>");    
 
@@ -326,16 +346,17 @@ function ListarSubPresupuesto(idpres)
         success: function (data) 
         { 
             lista.empty();
-
             if(data.length>0)
             {
                 for (var dato in data) {  
-                    lista.append("<div class='list-group-item'><div class='texto_subitem'><span class='pull-right'><span class='badge'>"+data[dato]["idsubpresupuesto"]
+                    lista.append("<div class='list-group-item'><div class='texto_subitem'><span class='pull-right'><span class='badge'>"+data[dato]["cant_titulo"]
                         +"</span>&nbsp;<button class='btn btn-xs btn-info' onclick='EditarSubPresupuesto(this);'><span class='glyphicon glyphicon-pencil'></span></button>&nbsp;<button class='btn btn-xs btn-danger' onclick='EliminarSubPresupeusto("+data[dato]["idsubpresupuesto"]+");'><span class='glyphicon glyphicon-trash'></span></button></span><a href='"+RutaBase+"/Subpresupuesto/Editar/"+data[dato]["idsubpresupuesto"]+"'>"+data[dato]["descripcion"]
                         +"</a></div>"+
                         "<div class='panel panel-info subitempres' style='display: none; margin: -10px -15px;'><div class='panel-heading'><strong>EDITAR SUB-PRESUPUESTO</strong><div class='pull-right'><button class='close miniclose' onclick='OcultarSub(this);'><span class='glyphicon glyphicon-remove'></span></button></div></div><div class='panel-body' style='padding: 15px 15px 0px 15px;'> "+
-                        "<div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Descripción</label><span class='formulario_recomendacion'>Ingrese el Nombre</span><div class='formulario_control'><input class='form-control' id='cambio_descripcion_subpresupuesto"+data[dato]["idsubpresupuesto"]+"' type='text' value='"+data[dato]["descripcion"]+"'></div></div></div><div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Cantidad</label><span class='formulario_recomendacion'>1,2,3,...</span><div class='formulario_control'><input type='text' class='form-control' id='cantidad_subpresupuesto' value='1'/><span class='help-block'></span></div></div></div>"+
+                        "<div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Descripción</label><span class='formulario_recomendacion'>Ingrese el Nombre</span><div class='formulario_control'><input class='form-control' id='cambio_descripcion_subpresupuesto"+data[dato]["idsubpresupuesto"]+"' type='text' value='"+data[dato]["descripcion"]+"'></div></div></div><div class='row'><div class='formulario_elemento col-md-12'><label class='formulario_label'>Cantidad</label><span class='formulario_recomendacion'>1,2,3,...</span><div class='formulario_control'><input type='text' class='form-control cant-cambio-sub' id='cambio_cantidad_subpresupuesto"+data[dato]["idsubpresupuesto"]+"' value='"+data[dato]["cantidad"]+"'/><span class='help-block'></span></div></div></div>"+
                         "</div><div class='panel-footer'><div class='pull-right'><button type='button' class='btn btn-success' onclick='GuardarEditadoSubPresupuesto("+data[dato]["idsubpresupuesto"]+");'>Guardar</button>&nbsp;<button type='button' class='btn btn-default' onclick='OcultarSub(this);'>Cancelar</button></div><div class='clearfix'></div></div></div></div>"); 
+
+                    $('#cambio_cantidad_subpresupuesto'+data[dato]["idsubpresupuesto"]+'').autoNumeric('init', opc);
                 };
             }
             else
