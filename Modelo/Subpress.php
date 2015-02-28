@@ -15,18 +15,18 @@ class ModeloSubpress extends ModeloBase
     public function Eliminar($vars)
     {
         $this->consulta = "Call spEliminarSubPresupuesto(".$vars['idsubpresupuesto'].");";
-        $this->Ejecutar();  
+        return $this->Ejecutar();  
     }
 
     public function Editar($vars)
     {
-        $this->consulta = "Call spEditarSubPresupuesto(".$vars['idsubpresupuesto'].",'".$vars["descripcion"]."');";
+        $this->consulta = "Call spEditarSubPresupuesto(".$vars['idsubpresupuesto'].",".$vars['cantidad'].",'".$vars["descripcion"]."');";
         $this->Ejecutar();  
     }
 
     public function Guardar($vars)
     {
-        $this->consulta = "Call spAgregar_SubPresupuesto(".$vars["idpresupuesto"].",'".$vars["descripcion"]."',".$vars["idorganismo"].",".$vars["idusuario"].");";
+        $this->consulta = "Call spAgregar_SubPresupuesto(".$vars["idpresupuesto"].",".$vars["cantidad"].",'".$vars["descripcion"]."',".$vars["idorganismo"].",".$vars["idusuario"].");";
         $this->Ejecutar();
     }
 

@@ -53,8 +53,8 @@ class ControladorPresupuesto extends ControladorBase
         $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html")); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");
 
-        $jsss = array('jstree.min', 'autoNumeric', 'jquery.dataTables.min', 'dataTables.responsive.min','Presupuesto_Principal'); 
-        $csss = array('Controles', 'dataTables.responsive', 'Nuevo_Tabla', 'Elementos','jstree.min','Presupuesto_Principal');
+        $jsss = array('jstree.min', 'autoNumeric', 'jquery.dataTables.min', 'dataTables.responsive.min','Presupuesto_Principal','toastr'); 
+        $csss = array('Controles', 'dataTables.responsive', 'Nuevo_Tabla', 'Elementos','jstree.min','Presupuesto_Principal','toastr');
 
         $pagina = $this->MostarElementos($jsss, $csss);
         print $pagina;

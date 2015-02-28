@@ -46,7 +46,7 @@ $app->post('/SubPresupuesto', function() use($request, $Modelo) {
 $app->delete('/SubPresupuesto', function() use($request, $Modelo) {
 
     $body = json_decode($request->getBody(), true); 
-    $id = $Modelo->Eliminar($body);    
+    $id = $Modelo->Eliminar($body);
 
     echo json_encode($id);
 });
