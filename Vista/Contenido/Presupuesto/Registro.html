@@ -1,25 +1,25 @@
 <div class="Bloque">
 
 	<div class="Titulo_Principal">
-		<span class="superior">USTED ESTÁ AQUÍ&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior">&nbsp;&nbsp;&nbsp;PRESUPUESTO&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior negrita">&nbsp;&nbsp;&nbsp;NUEVO</span>
+		<span class="superior">USTED ESTÁ AQUÍ&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior">&nbsp;&nbsp;&nbsp;<a href="{elemento_ruta}/Presupuesto/Principal">PRESUPUESTO</a>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior negrita">&nbsp;&nbsp;&nbsp;NUEVO</span>
 		<div class="inferior">
-			<i class="fa fa-list"></i><h3>Registro&nbsp; - &nbsp;<span class="negrita">Agregar Presupuesto</span></h3>
+			<i class="fa fa-file-text"></i><h3>Registro&nbsp; - &nbsp;<span class="negrita">Agregar Presupuesto</span></h3>
 		</div>
 	</div>
 	<input type="hidden" id="resultado" value="{elemento_resultado}">
 
-	<form id="elformulario" method="POST" action="#" onsubmit="return Validar_Formulario();">
+	<form id="elformulario" method="POST" action="" onsubmit="return Validar_Formulario();">
 		<div class="Box_1">
 			<div class="Tit">
 				<div class="Herramientas">	
-					<a href="javascript:void(0)" onclick="Actualizar_Tabla();"><i class="fa fa-refresh"></i></a>			
+					<a href="javascript:void(0)" onclick="Limpiar();"><i class="fa fa-refresh"></i></a>			
 					<a href="#" data-toggle="tooltip" data-placement="left" title="Registre u w wq qw wqe qw qwe wqe qwe qwe qwe qwe qw qwe wq wq wqeq eqw wqen nuevo Presupuesto"><i class="fa fa-question-circle"></i></a>
 				</div>
 				<h4>Nuevo <span class="segundo">Presupuesto</span></h4>
 			</div>
 			<div class="Cont">
 				<div class="row formulario_separador">
-					<div class="formulario_elemento col-md-6">						
+					<div class="col-md-6">						
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Cliente*</label>
@@ -27,14 +27,14 @@
 								<div class="formulario_control">
 									<div class="forme_tabla">										
 										<div class="form_cell">
-											<input type="hidden" id="idcliente">
+											<input type="hidden" id="idcliente" name="idcliente">
 											<input class="form-control requerido" id="nombrecliente" type="text" disabled>
 										</div>
 										<div class="form_cell" style="padding-left: 5px; width: 35px;">
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></button>
 										</div>
 										<div class="form_cell" style="padding-left: 5px; width: 35px;">
-											<a href="{elemento_ruta}/Cliente/Registrar" class="btn btn-success"><i class="fa fa-plus"></i></a>
+											<a href="{elemento_ruta}/Cliente/Nuevo" class="btn btn-success"><i class="fa fa-plus"></i></a>
 										</div>										
 									</div>
 								</div>
@@ -47,15 +47,15 @@
 									<div class="row">
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Departamento</span>
-											<select class="form-control" id="Departamento" name="Departamento" onchange="SelectDepartamento(this);"></select>
+											<select class="form-control requerido" id="Departamento" name="Departamento" onchange="SelectDepartamento(this);"></select>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Provincia</span>
-											<select class="form-control" id="Provincia" name="Provincia" onchange="SelectProvincia(this);"></select>
+											<select class="form-control requerido" id="Provincia" name="Provincia" onchange="SelectProvincia(this);"></select>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<span style="color: #A7ABB1; font-size: 12px;">Distrito</span>
-											<select class="form-control" id="Distrito" name="Distrito"></select>
+											<select class="form-control requerido" id="Distrito" name="Distrito"></select>
 										</div>
 									</div>
 								</div>
@@ -91,7 +91,7 @@
 								<label class="formulario_label">Moneda*</label>
 								<span class="formulario_recomendacion">Ejm. Soles</span>
 								<div class="formulario_control">
-									<select class="form-control" id="Moneda" name="Moneda"></select>
+									<select class="form-control requerido" id="Moneda" name="Moneda"></select>
 								</div>
 							</div>
 								
@@ -100,7 +100,7 @@
 							
 						</div>						
 					</div>
-					<div class="formulario_elemento col-md-6">
+					<div class="col-md-6">
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Descripción*</label>
@@ -160,6 +160,8 @@
 			</div>
 			<div class="Bas">
 				<div class="pull-right">
+					<input name="idorganismo" type="hidden" value="{id_organismo}">	
+					<input name="idusuario" type="hidden" value="{id_usuario}">
 					<button type="sumbit" class="btn btn-success" >Guardar</button>
 					<a href="{elemento_ruta}/Presupuesto/Principal" class="btn btn-default">Regresar</a>			
 				</div>

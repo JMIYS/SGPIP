@@ -19,7 +19,7 @@ class ControladorError extends ControladorBase
         print $html;
     }
 
-    protected function accesRestricted()
+    protected function Acceso()
     {
         $diccionario_Error = array('{icono_error}'=>'fa-ban','{mensaje_error}'=>'Ud No Posee los Privilegios necesarios para acceder a esta Página');            
         $this->Contenido = str_replace(array_keys($diccionario_Error), array_values($diccionario_Error), $this->Contenido);

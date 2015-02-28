@@ -22,16 +22,20 @@ class ControladorLogin extends ControladorBase
             }
             else
             {
-                $diccionario_login = array('{elemento_login}'=>'Usuario o Contraseña Incorrectos');                 
+                $diccionario_login = array('{elemento_resultado}'=>'0');                 
             }         
         }
         else
         {      
-            $diccionario_login = array('{elemento_login}'=>'Ingrese Usuario y Contraseña');                        
+            $diccionario_login = array('{elemento_resultado}'=>'1');                        
         }  
         
         $this->Contenido= str_replace(array_keys($diccionario_login), array_values($diccionario_login), $this->Contenido); 
-        $html = $this->MostarElementos('','Login');
+
+        $csss=array('Login','toastr','Elementos');
+        $jsss=array('Login','toastr');
+
+        $html = $this->MostarElementos($jsss, $csss);
         print $html;       
     }
 

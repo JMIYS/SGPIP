@@ -1,17 +1,39 @@
-<div class="main">
-	<div class="login-form">
-		<h1>Ingresar Datos</h1>
-			<div class="head">
-				<img src="{elemento_ruta}/Vista/Imagenes/user.png" alt=""/>
-			</div>
-			<form action="" method="POST">
-				<input type="text" class="text" name="Usuario" value="USUARIO" autocomplete="off" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" >
-				<input type="password" name="Password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-				<div class="submit">
-					<input type="submit" onclick="myFunction()" value="INGRESAR" >
+<div id="groud" style="background-image: url({elemento_ruta}/Vista/Imagenes/ground.jpg); background-size:cover;">
+	<input type="hidden" id="resultado" value="{elemento_resultado}">
+	<div id="fixx">
+		<div id="Box_Centro_Login">
+			<form id="elformulario" action="" method="POST" onsubmit="return Validar_Formulario();">
+				<div class="row">
+					<div class="col-sm-7 col-md-7">
+						<div id="Izquierda_Login">
+							<h2>Login</h2>
+							<span>Llene su información de contacto</span>
+							<div class="input-group">
+							  <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+							  <input type="text" class="form-control requerido" placeholder="Usuario" name="Usuario" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group">
+							  <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+							  <input type="password" name="Password" class="form-control requerido" placeholder="Contraseña" aria-describedby="basic-addon1">
+							</div>
+							<div class="alll clearfix">
+								<div class="pull-left"><button type="submit" class="btn btn-success">Ingresar</button></div>
+								<div class="pull-right"><a href="">Olvidó su contraseña?</a></div>
+							</div>				
+						</div>
+					</div>
+					<div class="col-sm-5 col-md-5">
+						<div id="Derecha_Login">						
+							<div class="centt">
+								<label>REGÍSTRESE</label>
+								<p>Si desea acceder a nuestro sistema contactese con nosotros para poder adquirir una cuenta.</p>
+								<br>
+								<button type="button" class="btn btn-primary">Contáctanos</button>
+							</div>						
+						</div>	
+					</div>	
 				</div>	
-				<p><a href="#">Recuperar contraseña</a></p>
 			</form>
 		</div>
-   		
+	</div>
 </div>

@@ -1,27 +1,49 @@
 <div class="Bloque">
 
+	<div class="Titulo_Principal">
+		<span class="superior">USTED ESTÁ AQUÍ&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior">&nbsp;&nbsp;&nbsp;<a href="{elemento_ruta}/Cliente/Principal">CLIENTE</a>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></span><span class="superior negrita">&nbsp;&nbsp;&nbsp;NUEVO</span>
+		<div class="inferior">
+			<i class="fa fa-users"></i><h3>Registro&nbsp; - &nbsp;<span class="negrita">Agregar Cliente</span></h3>
+		</div>
+	</div>
+
+	<input type="hidden" id="resultado" value="{elemento_resultado}">
+
 	<form action="" method="POST" id="registro_cliente" onsubmit="return Validar_Formulario();">
 		<div class="Box_1">
 			<div class="Tit">
-				<h4>Registrar <span class="segundo">Cliente</span></h4>
+				<div class="Herramientas">
+				<a href="javascript:void(0)" title="Limpiar" onclick="Limpiar();"><i class="fa fa-refresh"></i></a>
+				<a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Registre u w wq qw wqe qw qwe wqe qwe qwe qwe qwe qw qwe wq wq wqeq eqw wqen nuevo Presupuesto"><i class="fa fa-question-circle"></i></a>
+				</div>				
+				<h4>Nuevo <span class="segundo">Cliente</span></h4>
 			</div>
 			<div class="Cont">
 
 				<div class="row formulario_separador">
-					<div class="formulario_elemento col-md-6">
+					<div class="col-md-6">
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label">Razon Social</label>
+								<label class="formulario_label">Razón Social*</label>
 								<span class="formulario_recomendacion">Nombre del cliente</span>
 								<div class="formulario_control">
-									<input type="text" style="width: 100%;" class="form-control requerido" name="txt_razon_social">
+									<input type="text" style="width: 100%;" class="form-control requerido" id="txt_razon_social" name="txt_razon_social">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="formulario_elemento col-md-6">
+								<label class="formulario_label">Tratamiento</label>
+								<span class="formulario_recomendacion">Ejm. Sr, Ing / SA, EIRL</span>
+								<div class="formulario_control">
+									<input type="text" class="form-control" style="width: 100%;" name="txt_abreviatura" id="txt_abreviatura">
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">Persona</label>
-								<span class="formulario_recomendacion">Natural/Juridica</span>
+								<span class="formulario_recomendacion">Natural / Jurídica</span>
 								<div class="formulario_control" >
 									<select id="browsers" class="form-control" onchange="habilitar_dniruc(this);" name="cmb_persona">
 									   	<option value="1"> NATURAL </option> 
@@ -30,18 +52,9 @@
 								</div>
 							</div>
 						</div>
-					
 						<div class="row">
 							<div class="formulario_elemento col-md-6">
-								<label class="formulario_label">Abreviatura</label>
-								<div class="formulario_control">
-									<input type="text" class="form-control" style="width: 100%;" name="txt_abreviatura">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="formulario_elemento col-md-6">
-								<label class="formulario_label">RUC</label>
+								<label class="formulario_label">RUC*</label>
 								<div class="formulario_control">
 									<input type="text" id="rucc" disabled class="form-control validar_numero" style="width: 100%;" name="txt_ruc">
 									<span class="help-block"></span>
@@ -49,7 +62,7 @@
 							</div>
 
 							<div class="formulario_elemento col-md-6">
-								<label class="formulario_label">DNI</label>
+								<label class="formulario_label">DNI*</label>
 								<div class="formulario_control">
 									<input type="text" id="dnii"  class="form-control validar_numero requerido" style="width: 100%;" name="txt_dni">
 									<span class="help-block"></span>
@@ -59,31 +72,30 @@
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Dirección</label>
+								<span class="formulario_recomendacion">Ejm. Av. los Robles #846</span>
 								<div class="formulario_control">
-									<input type="text" style="width: 100%;" class="form-control" name="txt_direccion">
+									<input type="text" style="width: 100%;" class="form-control" name="txt_direccion" id="txt_direccion">
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="formulario_elemento col-md-6">
+					<div class="col-md-6">
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Descripción</label>
-								<span class="formulario_recomendacion">Descripcion del cliente</span>
+								<span class="formulario_recomendacion">Descripción del cliente</span>
 								<div class="formulario_control">
-									<textarea rows="5" class="txtarea form-control" name="txt_descripcion">
-									
-									</textarea>
+									<textarea rows="5" class="txtarea form-control" name="txt_descripcion" id="txt_descripcion" style="max-width: 100%;"></textarea>
 								</div>
 							</div>
 						</div>	
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Correo Electrónico</label>
-								<span class="formulario_recomendacion">ejemplo@ejemplo.com</span>
+								<span class="formulario_recomendacion">Ejm. nombre@ejemplo.com</span>
 								<div class="formulario_control">
-									<input type="text" class="form-control" name="txt_correo">
+									<input type="text" class="form-control" name="txt_correo" id="txt_correo">
 								</div>
 							</div>
 						</div>
@@ -91,39 +103,42 @@
 							<div class="formulario_elemento col-md-6">
 								<label class="formulario_label">Celular</label>
 								<div class="formulario_control">
-									<input type="text" class="form-control validar_numero" name="txt_celular">
+									<input type="text" class="form-control validar_numero" name="txt_celular" id="txt_celular">
 									<span class="help-block"></span>
 								</div>
 							</div>
 							<div class="formulario_elemento col-md-6">
-								<label class="formulario_label">Teñefono fijo</label>
+								<label class="formulario_label">Teléfono fijo</label>
 								<div class="formulario_control">
-									<input type="text" class="form-control validar_numero" name="txt_fijo">
+									<input type="text" class="form-control validar_numero" name="txt_fijo" id="txt_fijo">
 									<span class="help-block"></span>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="formulario_elemento col-md-12">
-								<label class="formulario_label">Pagina Web</label>
-								<span class="formulario_recomendacion">Direccion de la pagina web del cliente</span>
+								<label class="formulario_label">Página Web</label>
+								<span class="formulario_recomendacion">Ejm. www.mipagina.com</span>
 								<div class="formulario_control">
-									<input type="text" style="width: 100%;" class="form-control" name="txt_pagina">
+									<input type="text" style="width: 100%;" class="form-control" name="txt_pagina" id="txt_pagina">
 								</div>
 							</div>
 						</div>				
 					</div>
-
 						
-				</div>		
-
-
+				</div>
 			</div>
 			<div class="Bas">			
 
 				<div class="pull-right">
-					<input type="submit"name="btn_registrar" value="Registrar" class="btn btn-default" >
-					<a href="{elemento_ruta}/Presupuesto/Registro" class="btn btn-default" >Regresar</a>
+					<input name="idorganismo" type="hidden" value="{id_organismo}">	
+					<input name="idusuario" type="hidden" value="{id_usuario}">
+
+					<input type="submit"name="btn_registrar" value="Guardar" class="btn btn-success" >
+					<div class="btn-group" role="group" aria-label="...">
+						<a href="{elemento_ruta}/Presupuesto/Nuevo" class="btn btn-default" ><i class="fa fa-file-text"></i></a>
+						<a href="{elemento_ruta}/Cliente/Principal" class="btn btn-default" ><i class="fa fa-users"></i></a>
+					</div>
 				</div>
 			</div>
 		</div>

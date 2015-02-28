@@ -158,10 +158,30 @@ function ListaMoneda ()
 	});
 }
 
+function Limpiar() 
+{
+	$("#idcliente" ).val("");
+	$("#nombrecliente" ).val("");
+	$("#Plazo" ).val("");
+	$("#Jornadas" ).val("8");
+	$("#Moneda" ).val("1");
+	$("#Descripcion" ).val("");
+	$("#PBaseDirecto" ).val("0");
+	$("#PBaseIndirecto" ).val("0");
+	$("#PBaseTotal" ).val("0");
+
+    $( "#Descripcion" ).removeClass("requerido");
+    $( "#Jornadas" ).removeClass("tiene_error");
+    $( "#Plazo" ).removeClass("tiene_error");
+    $( "#nombrecliente" ).removeClass("tiene_error");
+   
+}
+
 function Validar_Formulario() {	
 
 	var $inputs = $("#elformulario input.requerido");
     var $textsarea = $("#elformulario textarea.requerido");
+    var $select = $("#elformulario select.requerido");
     var correcto=true;
     //Intputs
     $inputs.each(function() {
@@ -185,6 +205,19 @@ function Validar_Formulario() {
     	}
     	else    	
     		$(this).removeClass("tiene_error" );    	   		
+    	
+    });
+
+    //Select
+    $select.each(function() {
+    	
+    	if($(this).val() == 0 || $(this).val() == "0" || $(this).val() == "" || $(this).val() == null)
+    	{
+    		$(this).addClass("tiene_error" );
+    		correcto=false;
+    	}
+    	else    	
+    		$(this).removeClass("tiene_error" );     	   		
     	
     });
     

@@ -135,6 +135,12 @@ abstract class ControladorBase
         return $aside;
     }
 
+    public function Resultado($pagina, $ress)
+    {
+        $diccionario_resultado = array('{elemento_resultado}'=>$ress); 
+        return str_replace(array_keys($diccionario_resultado), array_values($diccionario_resultado), $pagina);        
+    }
+
     //USUARIO
     public function ComprobarLogin()
     {

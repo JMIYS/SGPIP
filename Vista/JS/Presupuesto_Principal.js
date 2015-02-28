@@ -118,7 +118,7 @@ $(document).ready( function () {
 	    }
     });
 
-    $('<a href="'+RutaBase+'/Presupuesto/Registro" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
+    $('<a href="'+RutaBase+'/Presupuesto/Nuevo" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 3%;">Nuevo</a>').appendTo('div.dataTables_length');  
     //ELIMINAR
     $("#presupuestos tbody").on('click', '.elim', function( evt ) {
 

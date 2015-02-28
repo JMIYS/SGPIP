@@ -1,0 +1,178 @@
+#contenido_one {
+
+	min-height: 100vh !important;
+	padding: 20px !important;
+}
+
+#groud
+{
+	display: table;
+	width: 100%;
+	width: calc(100% + 40px);
+	width: -webkit-calc(100% + 40px);
+	width:: -moz-calc(100% + 40px); 
+	height: 100vh;
+	margin: -20px;
+}
+
+#fixx
+{
+	display: table-cell;
+	vertical-align: middle;
+	padding: 20px;
+}
+
+#Box_Centro_Error
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;		
+	max-width: 450px;
+	min-height: 450px;
+	color: black;
+}
+
+#Box_Centro_Error p
+{
+	margin-top: 20px;
+	font-size: 16px;
+	text-align: justify;
+	color: #22262e;
+}
+
+#Box_Centro_Error button
+{
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	margin-top: 20px;
+}
+
+#cuatro
+{
+	display: table;
+	width: 100%;
+}
+
+.cent_linea
+{
+	display: table-cell;
+	width: 200px;
+	vertical-align: middle;
+}
+
+.cent_linea h1
+{
+	color: #22262e;
+	font-size: 100px;
+	font-weight: bold;
+	text-align: center;
+	margin: 0;	
+}
+
+.cent_linea label
+{
+	color: #22262e;
+	text-align: center;
+	margin: 0;
+	font-weight: normal;
+	width: 100%;
+}
+
+.lados
+{
+	display: table-cell;
+}
+
+.linea_sep
+{
+	border-bottom: 2px solid #22262e;
+	height: 55px;
+}
+
+#meme
+{
+	position: absolute;
+	bottom: 0;
+	left: 5px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+	#meme
+	{	
+		width: 40%;
+	}
+
+	#Box_Centro_Error
+	{		
+		max-width: 450px;
+		min-height: 300px;
+	}
+
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+	#meme
+	{	
+		width: 50%;
+	}
+
+	#Box_Centro_Error
+	{		
+		max-width: 450px;
+		min-height: 450px;
+	}
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+	#meme
+	{	
+		width: 60%;
+	}
+
+	#Box_Centro_Error
+	{		
+		max-width: 450px;
+		min-height: 500px;
+	}
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+	#meme
+	{	
+		width: 70%;
+	}
+
+	#Box_Centro_Error
+	{		
+		max-width: 450px;
+		min-height: 450px;
+	}
+
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+
+	#meme
+	{	
+		width: 80%;
+	}
+
+	#Box_Centro_Error
+	{		
+		max-width: 450px;
+		min-height: 400px;
+	}
+
+}

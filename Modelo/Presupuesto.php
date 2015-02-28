@@ -7,7 +7,48 @@ class ModeloPresupuesto extends ModeloBase
     
     public function Guardar($vars)
     {
-        $this->consulta = "INSERT INTO tpresupuesto(idusuario,idorganismo,iddistrito,idprovincia,iddepartamento,idcliente,idmoneda,nombre,fecha,plazo,jornada,pb_costo_directo,pb_costo_indirecto,pb_total,po_costo_directo,po_costo_indirecto,po_total) values (".$vars["idUsuario"].",".$vars["idOrganismo"].",".$vars["distrito"].",".$vars["provincia"].",".$vars["departamento"].",".$vars["codigoCliente"].",".$vars["Moneda"].",'".$vars["Descripcion"]."',".$vars["Fecha"].",".$vars["Plazo"].",".$vars["Jornadas"].",".$vars["pbcd"].",".$vars["pbci"].",".$vars["pbTotal"].",".$vars["pocb"].",".$vars["poci"].",".$vars["poTotal"].",);";
+    	$conf = array(
+            'idusuario' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'idorganismo' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'Distrito' => array(
+                'tipo' => 'numero',
+                'null' => false ),            
+            'Provincia' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'Departamento' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'idcliente' => array(
+                'tipo' => 'numero',
+                'null' => false ),  
+            'Moneda' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'Descripcion' => array(
+                'tipo' => 'texto',
+                'null' => false ), 
+            'Plazo' => array(
+                'tipo' => 'numero',
+                'null' => false ),
+            'Jornada' => array(
+                'tipo' => 'numero',
+                'null' => false ),             
+            'PBaseDirecto' => array(
+                'tipo' => 'numero',
+                'null' => true ),
+            'PBaseIndirecto' => array(
+                'tipo' => 'numero',
+                'null' => true ),
+            'PBaseTotal' => array(
+                'tipo' => 'numero',
+                'null' => true ));
+
+        $this->consulta = "INSERT INTO tpresupuesto(idcontenedor, idusuario,idorganismo,iddistrito,idprovincia,iddepartamento,idcliente,idmoneda,nombre,plazo,jornada,pb_costo_directo,pb_costo_indirecto,pb_total,estado) values (2,".$this->Tratar($conf, $vars).", 1);";
         return $this->Ejecutar();        
     }   
 

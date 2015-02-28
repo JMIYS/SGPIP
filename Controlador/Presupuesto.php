@@ -11,9 +11,11 @@ class ControladorPresupuesto extends ControladorBase
         //$controllerName = str_replace("Controlador", "", get_class($this));    
     }
         
-    protected function Registro()//La accion por defecto para inicio (si no se envian parametros)
+    protected function Nuevo()//La accion por defecto para inicio (si no se envian parametros)
     {
         $this->ComprobarLogin();
+
+        $cont = $this->CargarHeader(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"));
 
         if($_POST)
         {
@@ -21,13 +23,13 @@ class ControladorPresupuesto extends ControladorBase
             $Presupuesto = new ModeloPresupuesto; 
 
             if($Presupuesto->Guardar($_POST))            
-                $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),1);            
+                $this->Contenido =  $this->Resultado($cont,1);            
             else            
-                $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),$Presupuesto->mensaje);
+                $this->Contenido =  $this->Resultado($cont,$Presupuesto->mensaje);
        }             
         else
         {
-            $this->Contenido =  $this->Resultado(file_get_contents("Vista/Contenido/Presupuesto/Registro.html"),0);
+            $this->Contenido =  $this->Resultado($cont,0);
         }
        
 
@@ -37,29 +39,6 @@ class ControladorPresupuesto extends ControladorBase
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
         $csss=array('dataTables.responsive', 'Nuevo_Tabla', 'Elementos','Presupuesto','toastr');
         $jsss=array('jquery.dataTables.min', 'dataTables.responsive.min', 'autoNumeric', 'Presupuesto','toastr');
-        $pagina = $this->MostarElementos($jsss, $csss); 
-        print $pagina;
-    }
-
-    private function Resultado($pagina, $ress)
-    {
-        $diccionario_resultado = array('{elemento_resultado}'=>$ress); 
-        return str_replace(array_keys($diccionario_resultado), array_values($diccionario_resultado), $pagina);        
-    } 
-
-    protected function Controles()//La accion por defecto para inicio (si no se envian parametros)
-    {
-        //$this->ComprobarLogin();
-
-        $this->Header = file_get_contents("Vista/Secciones/Header.html");
-        $this->Contenido = file_get_contents("Vista/Contenido/Controles.html"); 
-        $this->User = file_get_contents("Vista/Secciones/User.html");
-        $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
-        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
-
-        $jsss = array('moment','jquery.validate.min','bootstrap-datepicker','bootstrap-datetimepicker.min','autoNumeric','bootstrap3-typeahead.min','icheck.min','jquery.scrollbar.min','toastr','jstree.min','fullcalendar.min','nicEdit'); 
-        $csss = array('Controles','datepicker','bootstrap-datetimepicker.min','typeahead','iCheck-blue','jquery.scrollbar','toastr','jstree.min','fullcalendar.min');
-
         $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;
     }

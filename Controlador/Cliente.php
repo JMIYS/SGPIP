@@ -9,65 +9,56 @@ class ControladorCliente extends ControladorBase
         //$controllerName = str_replace("Controlador", "", get_class($this));    
     }
 
-    protected function Registrar()//La accion por defecto para inicio (si no se envian parametros)
+    protected function Nuevo()//La accion por defecto para inicio (si no se envian parametros)
     {
-        //$this->ComprobarLogin();
+        $this->ComprobarLogin();
 
-        $this->Header = file_get_contents("Vista/Secciones/Header.html");
+        $this->Header = $this->CargarHeader(file_get_contents("Vista/Secciones/Header.html"));
+        $cont = $this->CargarHeader(file_get_contents("Vista/Contenido/Cliente/Registrar.html"));
+
         if($_POST)
         {
             require_once('Modelo/Cliente.php');
-            $varo=new ModeloCliente();
-            if (!isset($_POST["txt_dni"])) {
-                $_POST["txt_dni"]="null";
-            }
-            if (!isset($_POST["txt_ruc"])) {
-                $_POST["txt_ruc"]="null";
-            }
-            if (isset($_POST["cmb_persona"])) {
-                if($_POST["cmb_persona"]=="1"){
-                    $_POST["cmb_persona"]="NATURAL";
-                }
-            }
-            if (isset($_POST["cmb_persona"])) {
-                if($_POST["cmb_persona"]=="2"){
-                    $_POST["cmb_persona"]="JURIDICA";
-                }
-            }
-            if (!isset($_POST["Abreviatura"])) {
-                $_POST["Abreviatura"]="null";
-            }
-            if (!isset($_POST["Dirección"])) {
-                $_POST["Dirección"]="null";
-            }
-            if (!isset($_POST["txt_descripcion"])) {
-                $_POST["txt_descripcion"]="null";
-            }
-            $varo->InsertarCliente($_POST);
-            //print_r($_POST["txt_razon_social"].",".$_POST["txt_abreviatura"].",".$_POST["txt_descripcion"].",".$_POST["cmb_persona"].",".$_POST["txt_ruc"].",".$_POST["txt_dni"].",".$_POST["txt_correo"].",".$_POST["txt_celular"].",".$_POST["txt_fijo"].",".$_POST["txt_direccion"].",".$_POST["txt_pagina"]);
+            $varo = new ModeloCliente();
+
+            if (isset($_POST["cmb_persona"])) 
+            {
+                if($_POST["cmb_persona"]=="1")
+                    $_POST["cmb_persona"]="NATURAL";                
+                else                
+                    $_POST["cmb_persona"]="JURIDICA";                
+            }  
             
-            echo $varo->mensaje;
-            
-            $this->Contenido = file_get_contents("Vista/Contenido/Cliente/mensaje.html"); 
-
+            if ($varo->InsertarCliente($_POST)) 
+                $this->Contenido =  $this->Resultado($cont,1);              
+            else
+                $this->Contenido =  $this->Resultado($cont, $varo->mensaje);
         }
-        else{
-
-             $this->Contenido = file_get_contents("Vista/Contenido/Cliente/Registrar.html"); 
-        }
-
-
+        else
+            $this->Contenido =  $this->Resultado($cont, 0);      
        
         $this->User = file_get_contents("Vista/Secciones/User.html");
-        $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
+        $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html")); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
 
-        $csss = array('cliente_registrar', 'Elementos');
-        $jsss = array('cliente_registro', 'autoNumeric');
+        $csss = array('cliente_registrar', 'Elementos', 'toastr');
+        $jsss = array('cliente_registro', 'autoNumeric', 'toastr');
         $pagina = $this->MostarElementos($jsss,$csss); 
         print $pagina;
+    }    
 
+    protected function Principal()//La accion por defecto para inicio (si no se envian parametros)
+    {
+        $this->ComprobarLogin();
 
+        $this->Header = file_get_contents("Vista/Secciones/Header.html");
+        $this->Contenido = file_get_contents("Vista/Contenido/Inicio.html"); 
+        $this->User = file_get_contents("Vista/Secciones/User.html");
+        $this->Aside = $this->CargarAside(file_get_contents("Vista/Secciones/Aside.html")); 
+        $this->Footer = file_get_contents("Vista/Secciones/Footer.html");
+        
+        $pagina = $this->MostarElementos('', ''); 
+        print $pagina;
     }
 
 }

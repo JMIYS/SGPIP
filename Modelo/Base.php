@@ -85,6 +85,57 @@ abstract class ModeloBase
 			return false;
 		}
 	}
+
+    public function Tratar($config, $data)
+    {
+    	$resultado = "";
+    	$primero = true;
+
+        foreach ($config as $key => $value) {
+        	//Comprobamos si existe el elemento
+        	if(isset($data[$key])) 
+        		$raw = $data[$key];    
+        	else       
+        		$raw = "";  
+
+        	//Comprobamos las propiedades
+        	if($value["null"])
+        	{
+        		//si esta vacio
+        		if($raw == "")
+        		{
+        			$raw = "null";
+        		}
+        		else
+        		{
+        			//si es tipo texto
+        			if($value["tipo"]=="texto")
+        			{
+        				$raw = "'".$raw."'";
+        			}
+        		}
+        	}
+        	else
+        	{
+        		//si es tipo texto
+    			if($value["tipo"]=="texto")
+    			{
+    				$raw = "'".$raw."'";
+    			}
+        	}
+
+			if ($primero) {
+				$resultado.=$raw;
+				$primero=false;
+			}
+			else
+				$resultado.=",".$raw;       	
+        	
+        }
+
+        return $resultado;             
+    } 
+
 }
 
 ?>
