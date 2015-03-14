@@ -2,11 +2,7 @@
 {
 	display: table;
 	width: 100%;
-	width: calc(100% + 40px);
-	width: -webkit-calc(100% + 40px);
-	width:: -moz-calc(100% + 40px); 
 	height: 100vh;
-	margin: -20px;
 }
 
 #fixx
@@ -19,7 +15,7 @@
 #contenido_one {
 
 	min-height: 100vh !important;
-	padding: 20px !important;
+	padding: 0 !important;
 }
 
 #Box_Centro_Login
@@ -52,11 +48,17 @@
 	padding: 25px;
 }
 
-#Izquierda_Login > h2
+#Izquierda_Login h2
 {
 	margin-top: 5px;
 	margin-bottom: 15px;
 	color: #848389;
+}
+
+#Izquierda_Login img
+{
+	height: 32px;
+	margin-top: 8px;
 }
 
 #Izquierda_Login > span

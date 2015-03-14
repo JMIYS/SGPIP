@@ -6,23 +6,20 @@ class ControladorError extends ControladorBase
 {    
     //add to the parent constructor
     public function __construct($action, $id, $urlValues) {
-        parent::__construct($action, $id, $urlValues);     
-        $this->Contenido = file_get_contents("Vista/Contenido/Error.html");   
+        parent::__construct($action, $id, $urlValues);
     }
     
     //bad URL request error
     protected function badURL()
-    {
-        $diccionario_Error = array('{icono_error}'=>'fa-exclamation-triangle','{mensaje_error}'=>'La Página a la que intenta acceder No Existe');                 
-        $this->Contenido = str_replace(array_keys($diccionario_Error), array_values($diccionario_Error), $this->Contenido);
+    {    
+        $this->Contenido = file_get_contents("Vista/Contenido/Error.html");   
         $html = $this->MostarElementos('','Error');
         print $html;
     }
 
     protected function Acceso()
     {
-        $diccionario_Error = array('{icono_error}'=>'fa-ban','{mensaje_error}'=>'Ud No Posee los Privilegios necesarios para acceder a esta Página');            
-        $this->Contenido = str_replace(array_keys($diccionario_Error), array_values($diccionario_Error), $this->Contenido);
+        $this->Contenido = file_get_contents("Vista/Contenido/Acceso.html");   
         $html = $this->MostarElementos('','Error');
         print $html;
     }

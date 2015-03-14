@@ -18,7 +18,7 @@ $(document).ready( function () {
             { "data": "idcliente" },
             { "data": "razonsocial" },
             { "data": "persona" },
-            { "defaultContent": "<button class='btn btn-default opp'><i class='fa fa-share'></i></button>", "bSearchable": false, "bSortable": false, "width": "30px" }           
+            { "defaultContent": "<button class='btn btn-default opp'><i class='fa fa-download'></i></button>", "bSearchable": false, "bSortable": false, "width": "30px" }           
         ],
         responsive: true,
         language: {

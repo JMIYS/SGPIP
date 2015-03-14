@@ -113,12 +113,20 @@ abstract class ControladorBase
 
         $base = "<li><a href='".Constantes::Path."/Inicio/Principal'><i class='fa fa-home'></i>&nbsp;&nbsp;&nbsp;Inicio</a></li>";
         $modulo = '';
+        $primero = true;
 
         foreach ($datos as $fila) 
         {
             if($fila["nombre_modulo"] != $modulo)
             {
-                $base.="<li><label><i class='fa ".$fila["imagen"]."'></i>&nbsp;&nbsp;&nbsp;".$fila["titulo_modulo"]."</label><ul><li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_submodulo"]."' >".$fila["titulo_submodulo"]."</a></li>";
+                if($primero)   
+                {
+                    $base.="<li><label><i class='fa ".$fila["imagen"]."'></i>&nbsp;&nbsp;&nbsp;".$fila["titulo_modulo"]."</label><ul><li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_submodulo"]."' >".$fila["titulo_submodulo"]."</a></li>";
+                    $primero=false;
+                } 
+                else
+                    $base.="</ul></li><li><label><i class='fa ".$fila["imagen"]."'></i>&nbsp;&nbsp;&nbsp;".$fila["titulo_modulo"]."</label><ul><li><a href='".Constantes::Path."/".$fila["nombre_modulo"]."/".$fila["nombre_submodulo"]."' >".$fila["titulo_submodulo"]."</a></li>";                
+               
                 $modulo = $fila["nombre_modulo"];                
             }
             else

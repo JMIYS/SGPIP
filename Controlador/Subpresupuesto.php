@@ -11,7 +11,7 @@ class ControladorSubpresupuesto extends ControladorBase
         //$controllerName = str_replace("Controlador", "", get_class($this));    
     }
         
-    protected function Hoja()//La accion por defecto para inicio (si no se envian parametros)
+    protected function Principal()//La accion por defecto para inicio (si no se envian parametros)
     {
         //$this->ComprobarLogin();
 
