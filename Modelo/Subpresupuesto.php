@@ -7,8 +7,9 @@ class ModeloSubpresupuesto extends ModeloBase
     public function ListarTitulos($vars)//listar titulo de la hoja de presupuestos
     {
         $this->consulta = "call sp_listar_titulos_p (".$vars['idsubpresupuesto'].")";
-       $this->Consultar();  
-        return $this->rows;  
+       $this->Consultar(); 
+
+        return $this->Convertir($this->rows,3);  
     }   
 
     public function ListarTituloCategoria($vars)//lista los titluos segun la categoria
@@ -66,6 +67,18 @@ class ModeloSubpresupuesto extends ModeloBase
        $this->Consultar();  
         return $this->rows;
     } 
+
+    private function Convertir($arrayh  = array(), $pertenece){
+        
+        $result = array();
+        print_r($arrayh);
+        for ($i=0; $i < count($arrayh); $i++) { 
+            if ($arrayh[$i]["pertenece"]==$pertenece) {
+                $result[]= $this->Convertir($arrayh[$i],$arrayh[$i]["idtitulo_presupuesto"]) ;
+            }
+        }
+        return $result;
+    }
 
     function __destruct() {  
     unset($this);

@@ -357,3 +357,29 @@ function ActualizarTitulosHoja (){
 
     });
 }
+
+function buildItem(item) {
+
+    var html = "<li class='dd-item' data-id='" + item.id + "' id='" + item.id + "'>";
+    html += "<div class='dd-handle'>" + item.id + "</div>";
+
+    if (item.children) {
+
+        html += "<ol class='dd-list'>";
+        $.each(item.children, function (index, sub) {
+            html += buildItem(sub);
+        });
+        html += "</ol>";
+
+    }
+
+    html += "</li>";
+
+    return html;
+}
+
+$.each(JSON.parse(obj), function (index, item) {
+
+    $('#nestable ul').append(buildItem(item));
+
+});
