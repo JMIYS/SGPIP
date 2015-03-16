@@ -6,9 +6,8 @@
 		<div class="inferior">
 			<i class="fa fa-text-width"></i><h3>Hoja de Presupuesto&nbsp; - &nbsp;<span class="negrita">Titulos</span></h3>
 
-			<div class="pull-right">
-
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Catalogo</button>
+<!--boton catalogo -->
+			<div >
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   				<div class="modal-dialog modal-lg" >
     				<div class="modal-content">
@@ -19,10 +18,7 @@
        			<h4 class="modal-title" id="myModalLabel">Catalogo de Titulos</h4>
       		</div>
 
-      	<div class="modal-body">
-        
-        
-       
+      	<div class="modal-body">     
 
 	<div class="Box_1">
 		
@@ -40,7 +36,7 @@
 								<label class="formulario_label">Descripción </label>
 								<span class="formulario_recomendacion">Ingrese el Titulo</span>
 								<div class="formulario_control">
-									<input class="form-control" type="text" >
+									<input id="txtDescripcionN" class="form-control" type="text" >
 								</div>
 							</div>
 						</div>
@@ -48,7 +44,7 @@
 							<div class="formulario_elemento col-md-12">
 								<label class="formulario_label">Categoria</label>
 								<div class="formulario_control">
-									<select class= "stateCombo form-control"  > <option value='0' title='-select one-'>-Selecione categoria-</option></select>
+									<select id="cbCategoriaN" class= "stateCombo form-control"  > <option value='0' title='-select one-'>-Selecione categoria-</option></select>
   									<span class="help-block"></span>
 								</div>
 							</div>
@@ -56,7 +52,7 @@
 					  </div>
 					  <div class="panel-footer">
 					  	<div class="pull-right">					  		
-						  	<button type="button" class="btn btn-success" onclick="GuardarSubPresupuesto();">Guardar Despues</button>
+						  	<button type="button" class="btn btn-success" onclick="GuardarNuevo();">Guardar</button>
 						  	<button type="button" class="btn btn-default" onclick="ocultar();">Cancelar</button>				  		
 					  	</div>
 					  	<div class="clearfix"></div>
@@ -70,18 +66,24 @@
                 	<th>DESCRIPCION</th>
                 	<th></th>
                 	<th></th>
-                	<th></th>
-        	</thead>
+                	<th></th>             		
 
+        	</thead>
+    				<div id="mrd"></div>	
+				
+<!-- Boton Eliminar-->
+					<!--<button type="button" data-toggle="modal" data-target="#myModalE">X</button>-->			
 			</table>
 		</div>
 
 	</div>
 
       </div>
+
+
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      	<button type="button" class="btn btn-primary">Agregar</button>
+      	
       </div>
     </div>
   </div>
@@ -95,22 +97,59 @@
 
 
 
-<div class="Box_1">
-		
-		<div class="Cont">
-
-			<table id="TablaSubPresupuesto" class="row-border hover responsive no-wrap" cellspacing="0" width="100%">
-       		<thead>
-            	<tr>
-               		<th>ID</th>
-                	<th>DESCRIBCION</th>
-                	<th></th>
-                	<th></th>
-        	</thead>
-
-			</table>
+	<div class="Box_1">
+		<input id="subper" type="hidden" value="{idsubpresupuesto}">
+		<div class="Tit">			
+			<div class="Herramientas">
+				<a href=""><i class="fa fa-question-circle"></i></a>
+				<a href=""><i class="fa fa-cog"></i></a>
+			</div>
+			<h4>Subpresupuesto <span class="segundo">{elementoSubpresupuesto}</span></h4>
 		</div>
+		<div class="Cont">
+						
+			<div class="row">
+				<div class="formulario_elemento col-md-12">
+					<div class="clearfix"><div class="pull-right" style="margin-bottom: 10px;"  > 
+	
+	 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Catalogo</button>
+					</div></div>
+					
 
+
+					 <div class="dd" id="nestable3">
+            <ol class="dd-list">
+                <li class="dd-item" data-id="13"> <div class="pull-right nestablecerrar"><a href="" ><i class="fa fa-times"></i></a></div>
+                    <div  class="dd-handle" >Item 13  </div> 
+                </li>
+                <li class="dd-item" data-id="14">
+                    <div class="dd-handle">Item 14</div>
+                </li>
+                <li class="dd-item" data-id="15">
+                    <div class="dd-handle">Item 15</div>
+                    <ol class="dd-list">
+                        <li class="dd-item" data-id="16"><div class="dd-handle">Item 16</div></li>
+                        <li class="dd-item" data-id="17"><div class="dd-handle">Item 17</div></li>
+                        <li class="dd-item" data-id="18"><div class="dd-handle">Item 18</div></li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+        </div>
+
+
+
+				</div>
+			</div>								
+
+		
+		<div class="Bas">			
+
+			<div class="pull-right">
+				<button class="btn btn-success" > Guardar</button>
+				<button class="btn btn-warning">Restaurar</button>
+			</div>
+		</div>
 	</div>
 
 

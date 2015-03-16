@@ -42,11 +42,8 @@ $app->group('/General', function () use ($app, $request, $Modelo) {
 });
 
 $app->group('/Categoria', function () use ($app, $request, $Modelo) {
-
     $app->get('/Lista', function () use ($request, $Modelo) {
-
         $padre = $request->get('idcategoria');
-        
         $arrayName = array('idcategoria' => $padre);
         $resultado = $Modelo->ListarTituloCategoria($arrayName);
     if(count($resultado)>0)
@@ -54,10 +51,19 @@ $app->group('/Categoria', function () use ($app, $request, $Modelo) {
     else
         echo "{}";
     }); 
-   
-
 });
 
+$app->group('/Titulo', function () use ($app, $request, $Modelo) {
+    $app->get('/Lista', function () use ($request, $Modelo) {
+        $Id = $request->get('idsubpresupuesto');
+        $arrayName = array('idsubpresupuesto' => $Id);
+        $resultado = $Modelo->ListarTitulos($arrayName);
+    if(count($resultado)>0)
+        echo "{\"data\":".json_encode($resultado)."}";  
+    else
+        echo "{}";
+    }); 
+});
 
 /*$app->get("/Subpresupuesto", function () use ($request, $Modelo){
     
