@@ -6,7 +6,7 @@ class ModeloSubpresupuesto extends ModeloBase
 
     public function ListarTitulos($vars)//listar titulo de la hoja de presupuestos
     {
-        $this->consulta = "call sp_listar_titulos_p (".$vars['idsubpresupuesto'].")";
+        $this->consulta = "call sp_listar_titulo_p (".$vars['idsubpresupuesto'].")";
        $this->Consultar();  
         return $this->rows;  
     }   
@@ -18,22 +18,32 @@ class ModeloSubpresupuesto extends ModeloBase
         return $this->rows;       
     }
 
+    public function FiltrarTitulo($vars)
+    {
+        $this->consulta = "call sp_filtrar_titulo (".$vars['descripcion'].")";
+        $this->Consultar();  
+        return $this->rows;         
+    }  
+
     public function AgregarTitulo($vars)
     {
-        $this->consulta = "call sp_agregar_ttitulo ('".$vars['descripcion']."',".$vars['idcategoria_titulo'].",".$vars['idusuario'].",".$vars['idorganismo'].")";
-        return $this->Ejecutar();         
+        $this->consulta = "call sp_agregar_titulo (".$vars['descripcion'].",".$vars['idcategoria'].")";
+        $this->Consultar();  
+        return $this->rows;         
     }     
 
     public function ActualizarTitulo($vars)
     {
-        $this->consulta = "call sp_actualizar_titulo (".$vars['idtitulo'].",'".$vars['descripcion']."',".$vars['idcategoriaTitulo'].",".$vars['idusuario'].",".$vars['idorganismo'].")";
-        return $this->Ejecutar();         
+        $this->consulta = "call sp_actualizar_titulo (".$vars['idcatalogo'].",".$vars['descripcion'].")";
+        $this->Consultar();  
+        return $this->rows;          
     } 
 
     public function EliminarTitulo($vars)
     {
-        $this->consulta = "call sp_eliminar_titulo (".$vars['idtitulo'].")";
-        return $this->Ejecutar();         
+        $this->consulta = "call sp_eliminar_titulo (".$vars['idcatalogo'].")";
+        $this->Consultar();  
+        return $this->rows;          
     } 
 
     public function ListarCategorias()//lista las 7 catehorias
@@ -50,22 +60,6 @@ class ModeloSubpresupuesto extends ModeloBase
         $this->Consultar();  
         return $this->rows;      
     }
-
-    public function ObtenerDatos($vars)
-    {
-
-       $this->consulta = "SELECT * FROM tcatalogo_titulo where idcatalogo_titulo = ".$vars['idcategoria'].";";
-       $this->Consultar();  
-        return $this->rows;
-    }
-
-    public function ValidarSubpres($vars)
-    {
-
-       $this->consulta = "call spValidar_Subpresu (".$vars['idsubpresupuesto'].",'".$vars['idusuario']."',".$vars['idorganismo'].")";
-       $this->Consultar();  
-        return $this->rows;
-    } 
 
     function __destruct() {  
     unset($this);
