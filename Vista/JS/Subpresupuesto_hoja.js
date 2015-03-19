@@ -367,6 +367,7 @@ function ActualizarTitulosHoja (){
         }
 
     });
+<<<<<<< HEAD
 }
 
 function buildItem(item) {
@@ -456,4 +457,6 @@ function obtenerdatos(principal, perte, jj){
         };
         ord++;
     });
+=======
+>>>>>>> origin/master
 }
