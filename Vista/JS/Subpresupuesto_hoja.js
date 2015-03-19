@@ -7,16 +7,17 @@ var listarCate;
 $(document).ready( function () {
    toastr.options.timeOut = 2500;
    ActualizarTitulosHoja();
-    $('#nestable3').nestable({
-        group: 1
-    });
+   $('#nestable3').nestable({
+                    group: 1
+                });
+
 
      listaCatalogo = $('#TablaCatalogoTitulos').dataTable( {
         "ajax": RutaBase + "/Servicios/Subpresupuestos.php/General/Lista",           
         "columns": [
             { "data": "id"},
             { "data": "descripcion" },
-            { "defaultContent": "<button class='btn btn-default opp btn-xs' onclick='();'><i class='fa fa-share'></i></button>", "bSearchable": false, "bSortable": false,"width": "10px" },
+            { "defaultContent": "<button class='btn btn-default opp btn-xs'><i class='fa fa-share'></i></button>", "bSearchable": false, "bSortable": false,"width": "10px" },
             { "mData": "origen", "bSearchable": false, "bSortable": false, "width": "10px" , "mRender": function ( data, type, full ) {
         return "<button class='btn btn-info edit btn-xs' "+ (data== 1 ? "disabled" : "")+" > <i class='fa fa-pencil'> </i></button>";
       }},       
@@ -78,7 +79,12 @@ $("#TablaCatalogoTitulos tbody").on('click', '.elim', function() {
        
     });
 
-
+$("#TablaCatalogoTitulos tbody").on('click', '.opp', function() {        
+       
+        var data = $("#TablaCatalogoTitulos").DataTable().row($(this).parents('tr')).data();     
+       llevarTitulos(data);
+       
+    });
 
 var listaCategoria = $(".stateCombo");
     $.ajax({
@@ -347,12 +353,17 @@ function ActualizarTitulosHoja (){
         url: RutaBase +"/Servicios/Subpresupuestos.php/Titulo/Lista?idsubpresupuesto="+ $("#subper").val(),
         success: function (data)
         {
-            //alert(JSON.stringify(data));
+            $( "#nestable3 > ol" ).html( "" );
+            var datos= data.data;
+            for (var item in datos) {
+                $('#nestable3 > ol').append(buildItem(datos[item]));
+            }
+                
 
         },
         error:function (result)
         {
-            //alert(JSON.stringify(result));
+            alert(JSON.stringify(result));
         }
 
     });
@@ -360,17 +371,24 @@ function ActualizarTitulosHoja (){
 
 function buildItem(item) {
 
-    var html = "<li class='dd-item' data-id='" + item.id + "' id='" + item.id + "'>";
-    html += "<div class='dd-handle'>" + item.id + "</div>";
+    var html = "<li class='dd-item' data-id='" + item.descripcion + "' id='" + item.idtitulo_presupuesto + "'>";
+    html += "<input type='hidden' value='2' >";
+    html += "<div class='idd' style='display:none;' >"+item.idtitulo+"</div>";
+    html += "<div class='auxid' style='display:none;' >"+'2'+item.idtitulo+"</div>";
+    if (item.hijos) {
+        html += "<button data-action='collapse' type='button' style='display: block;'>Collapse</button>";
+        html += "<button data-action='expand' type='button' style='display: none;'>Expand</button>";
+    };
 
-    if (item.children) {
-
+    html += "<div class='pull-right nestablecerrar'><a href='javascript:void(0);' onclick='quitartitu(this);' ><i class='fa fa-times'></i></a></div>";
+    html += "<div class='dd-handle'>" + item.descripcion + "</div>";
+    
+    if (item.hijos) {
         html += "<ol class='dd-list'>";
-        $.each(item.children, function (index, sub) {
-            html += buildItem(sub);
-        });
+        for (var sub in item.hijos) {
+                html += buildItem(item.hijos[sub]);
+            }
         html += "</ol>";
-
     }
 
     html += "</li>";
@@ -378,8 +396,64 @@ function buildItem(item) {
     return html;
 }
 
-$.each(JSON.parse(obj), function (index, item) {
+function llevarTitulos (item) {
 
-    $('#nestable ul').append(buildItem(item));
+    var repetido = false;
+   $( "#nestable3 > ol li" ).each(function( index ) {
 
-});
+          var orig = $(this).find("input").val();
+          var idd = $(this).find("div.idd").html();
+          var idtitu_pre = $(this).attr("id");
+
+          if (item.id == idd && item.origen == orig) {
+            repetido=true;
+          };
+
+    });
+    if (repetido) {
+        alert("dato repetido!!!");
+    }else {
+        var html = "<li class='dd-item' data-id='" + item.descripcion + "' id='0'>";
+    html += "<input type='hidden' value='"+item.origen+"'>";
+    html += "<div class='idd' style='display:none;'>"+item.id+"</div>";
+    html += "<div class='auxid' style='display:none;' >"+item.origen+item.id+"</div>";
+    html += "<div class='pull-right nestablecerrar'><a href='javascript:void(0);' onclick='quitartitu(this);'><i class='fa fa-times'></i></a></div>";
+    html += "<div class='dd-handle'>" + item.descripcion + "</div>";
+
+    html += "</li>";
+    $("#nestable3 > ol").append(html);
+    }
+}
+
+function quitartitu(aa){
+    $elementoli=$(aa).closest("li");
+    $elementoli.remove();
+}
+
+
+
+function guardarHojapre(){
+    
+     //var algo=$('#nestable3').nestable('serialize');
+     //alert(JSON.stringify(algo));
+     var jj = [];
+     obtenerdatos($('#nestable3 > ol'),null,jj);
+     alert(JSON.stringify(jj));
+}
+
+function obtenerdatos(principal, perte, jj){
+    //niv++;
+    var ord = 1;
+    principal.children('li').each(function()
+    {
+        var elemento = {idtitulo_presupuesto : $(this).attr("id"), idaux: $(this).find("div.auxid").html(), idd : $(this).find("div.idd").html(), origen : $(this).find("input").val(), orden : ord,  pertenece : perte };
+        jj.push(elemento);
+
+        $tienehijos = $(this).find('ol');
+        if ($tienehijos.length > 0) {
+
+            obtenerdatos($tienehijos.eq(0), $(this).find("div.auxid").html(),jj);
+        };
+        ord++;
+    });
+}

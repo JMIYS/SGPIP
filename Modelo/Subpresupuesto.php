@@ -8,8 +8,7 @@ class ModeloSubpresupuesto extends ModeloBase
     {
         $this->consulta = "call sp_listar_titulos_p (".$vars['idsubpresupuesto'].")";
        $this->Consultar(); 
-
-        return $this->Convertir($this->rows,3);  
+        return $this->Convertir($this->rows,"");  
     }   
 
     public function ListarTituloCategoria($vars)//lista los titluos segun la categoria
@@ -71,10 +70,14 @@ class ModeloSubpresupuesto extends ModeloBase
     private function Convertir($arrayh  = array(), $pertenece){
         
         $result = array();
-        print_r($arrayh);
-        for ($i=0; $i < count($arrayh); $i++) { 
-            if ($arrayh[$i]["pertenece"]==$pertenece) {
-                $result[]= $this->Convertir($arrayh[$i],$arrayh[$i]["idtitulo_presupuesto"]) ;
+        foreach ($arrayh as $key => $value) {
+            if ($arrayh[$key]["pertenece"]==$pertenece) {
+               $aux= $arrayh[$key];
+               $aux2=$this->Convertir($arrayh,$arrayh[$key]["idtitulo_presupuesto"]) ;
+               if (count($aux2)>0) {
+                   $aux["hijos"]=$aux2;
+               }
+                $result[]= $aux;
             }
         }
         return $result;
