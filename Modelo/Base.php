@@ -30,18 +30,18 @@ abstract class ModeloBase
 		$this->AbrirConexion();		
 
 		$result = $this->conn->query($this->consulta);
-		$id = $this->conn->insert_id;
+		$re = $this->conn->insert_id;
    
 		if($result)
 		{
 		 	//$this->CerrarConexion();
-		 	return true;
+		 	return $re;
 		}
 		else
 		{
 			$this->mensaje = $this->conn->error;
 			$this->CerrarConexion();
-			return false;
+			return 0;
 		}
 	}
 		

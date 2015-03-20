@@ -35,8 +35,8 @@ class ControladorInicio extends ControladorBase
         $this->Aside = file_get_contents("Vista/Secciones/Aside.html"); 
         $this->Footer = file_get_contents("Vista/Secciones/Footer.html");  
 
-        $jsss = array('moment','jquery.validate.min','bootstrap-datepicker','bootstrap-datetimepicker.min','autoNumeric','bootstrap3-typeahead.min','icheck.min','jquery.scrollbar.min','toastr','jstree.min','fullcalendar.min','nicEdit'); 
-        $csss = array('Controles','datepicker','bootstrap-datetimepicker.min','typeahead','iCheck-blue','jquery.scrollbar','toastr','jstree.min','fullcalendar.min');
+        $jsss = array('moment','jquery.validate.min','bootstrap-datepicker','bootstrap-datetimepicker.min','autoNumeric','bootstrap3-typeahead.min','icheck.min','toastr','jstree.min','fullcalendar.min','nicEdit'); 
+        $csss = array('Controles','datepicker','bootstrap-datetimepicker.min','typeahead','iCheck-blue','toastr','jstree.min','fullcalendar.min');
 
         $pagina = $this->MostarElementos($jsss, $csss); 
         print $pagina;

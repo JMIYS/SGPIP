@@ -5,11 +5,15 @@ var listarCate;
 
 
 $(document).ready( function () {
+   
    toastr.options.timeOut = 2500;
    ActualizarTitulosHoja();
    $('#nestable3').nestable({
                     group: 1
+            }).on('change', function() {
+                $('#estado').text('Realizó cambios');
                 });
+
 
 
      listaCatalogo = $('#TablaCatalogoTitulos').dataTable( {
@@ -195,10 +199,6 @@ function ocultarM () {
     
 }
 
-function GuardarNuevo (argument) {
-	
-}
-
 
 function actualizarXcategoria (idCategoria) {
 
@@ -343,7 +343,7 @@ function ModificarCatalogoTitulo (idTit){
             },
             cache: false
 
-    })
+    });
     }
 }
 
@@ -358,7 +358,7 @@ function ActualizarTitulosHoja (){
             for (var item in datos) {
                 $('#nestable3 > ol').append(buildItem(datos[item]));
             }
-                
+                 $('[data-toggle="tooltip"]').tooltip();
 
         },
         error:function (result)
@@ -367,21 +367,30 @@ function ActualizarTitulosHoja (){
         }
 
     });
-<<<<<<< HEAD
+    $('#estado').text('');
 }
 
 function buildItem(item) {
-
+ 
     var html = "<li class='dd-item' data-id='" + item.descripcion + "' id='" + item.idtitulo_presupuesto + "'>";
     html += "<input type='hidden' value='2' >";
     html += "<div class='idd' style='display:none;' >"+item.idtitulo+"</div>";
+    html += "<div class='categoria' style='display:none;'>"+item.idcategoria_titulo+"</div>";
     html += "<div class='auxid' style='display:none;' >"+'2'+item.idtitulo+"</div>";
+    html += "<div class='auxpartida' style='display:none;' >"+item.partidas+"</div>";
+
+
     if (item.hijos) {
         html += "<button data-action='collapse' type='button' style='display: block;'>Collapse</button>";
         html += "<button data-action='expand' type='button' style='display: none;'>Expand</button>";
     };
 
-    html += "<div class='pull-right nestablecerrar'><a href='javascript:void(0);' onclick='quitartitu(this);' ><i class='fa fa-times'></i></a></div>";
+    if (item.partidas == '0') {
+        html += "<div class='pull-right nestablecerrar'><a href='javascript:void(0);' onclick='quitartitu(this);' ><i class='fa fa-times'></i></a></div>";
+    }else {
+        html += "<div class='pull-right nestablecerrar'><a class='not' data-toggle='tooltip' data-placement='left' title='Contiene partidas' href='javascript:void(0) ;' ><i class='fa fa-question-circle' ></i></a></div>";
+    }
+    
     html += "<div class='dd-handle'>" + item.descripcion + "</div>";
     
     if (item.hijos) {
@@ -417,7 +426,9 @@ function llevarTitulos (item) {
         var html = "<li class='dd-item' data-id='" + item.descripcion + "' id='0'>";
     html += "<input type='hidden' value='"+item.origen+"'>";
     html += "<div class='idd' style='display:none;'>"+item.id+"</div>";
+    html += "<div class='categoria' style='display:none;'>"+item.idcategoria_titulo+"</div>";
     html += "<div class='auxid' style='display:none;' >"+item.origen+item.id+"</div>";
+    html += "<div class='auxpartida' style='display:none;' >0</div>";
     html += "<div class='pull-right nestablecerrar'><a href='javascript:void(0);' onclick='quitartitu(this);'><i class='fa fa-times'></i></a></div>";
     html += "<div class='dd-handle'>" + item.descripcion + "</div>";
 
@@ -428,7 +439,14 @@ function llevarTitulos (item) {
 
 function quitartitu(aa){
     $elementoli=$(aa).closest("li");
-    $elementoli.remove();
+    var aux = $elementoli.find("a.not");
+    if (aux.length > 0) {
+        alert("Alguno de sus titulos posee partidas \nPor lo tanto no se puede eliminar!!!");
+    }else {
+        $elementoli.remove();
+        $('#estado').text('Realizó cambios');
+    };
+    
 }
 
 
@@ -439,7 +457,29 @@ function guardarHojapre(){
      //alert(JSON.stringify(algo));
      var jj = [];
      obtenerdatos($('#nestable3 > ol'),null,jj);
-     alert(JSON.stringify(jj));
+
+     var datos = {idsubpresupuesto : $("#subper").val(), idusuario:$("#id_usuario").val(), idorganismo:$("#id_organismo").val(), titulos : jj};
+     $.ajax({
+            url: RutaBase +"/Servicios/Subpresupuestos.php/Titulo/Guardar",
+            type: "POST",
+            data: JSON.stringify(datos),
+            async: true,
+            success: function (data)
+            {
+                actualizartabla();
+                toastr.success('Se guardo con exito','Satisfecho');
+            },
+            error:function (result)
+            {
+                actualizartabla();
+                toastr.error(result.responseText,'Error');
+            },
+            cache: false
+
+
+    });
+     $('#estado').text('');
+
 }
 
 function obtenerdatos(principal, perte, jj){
@@ -447,9 +487,8 @@ function obtenerdatos(principal, perte, jj){
     var ord = 1;
     principal.children('li').each(function()
     {
-        var elemento = {idtitulo_presupuesto : $(this).attr("id"), idaux: $(this).find("div.auxid").html(), idd : $(this).find("div.idd").html(), origen : $(this).find("input").val(), orden : ord,  pertenece : perte };
+        var elemento = {idtitulo_presupuesto : $(this).attr("id"), idcategoria_titulo : $(this).find("div.categoria").html(), descripcion : $(this).find("div.dd-handle").html(), idaux: $(this).find("div.auxid").html(), idd : $(this).find("div.idd").html(), origen : $(this).find("input").val(), orden : ord,  pertenece : perte, partidas : $(this).find("div.auxpartida").html()};
         jj.push(elemento);
-
         $tienehijos = $(this).find('ol');
         if ($tienehijos.length > 0) {
 
@@ -457,6 +496,4 @@ function obtenerdatos(principal, perte, jj){
         };
         ord++;
     });
-=======
->>>>>>> origin/master
 }

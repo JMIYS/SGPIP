@@ -7,13 +7,8 @@ class ModeloSubpresupuesto extends ModeloBase
     public function ListarTitulos($vars)//listar titulo de la hoja de presupuestos
     {
         $this->consulta = "call sp_listar_titulos_p (".$vars['idsubpresupuesto'].")";
-<<<<<<< HEAD
        $this->Consultar(); 
         return $this->Convertir($this->rows,"");  
-=======
-       $this->Consultar();  
-        return $this->rows;  
->>>>>>> origin/master
     }   
 
     public function ListarTituloCategoria($vars)//lista los titluos segun la categoria
@@ -72,7 +67,6 @@ class ModeloSubpresupuesto extends ModeloBase
         return $this->rows;
     } 
 
-<<<<<<< HEAD
     private function Convertir($arrayh  = array(), $pertenece){
         
         $result = array();
@@ -89,8 +83,80 @@ class ModeloSubpresupuesto extends ModeloBase
         return $result;
     }
 
-=======
->>>>>>> origin/master
+    public function GuardarHojaPre($vars){
+        $prueba = true;
+        $subpresupuesto = $vars['idsubpresupuesto'];
+        $titulos = $vars["titulos"];
+        if (is_array($titulos)) {
+            $this->consulta = "call sp_limpiar_hojapresu ($subpresupuesto)";//limpia los titulos sin partidas 
+            $this->Ejecutar();
+
+            $arrayaux = array();
+
+            foreach ($titulos as $key => $value) {
+                //Si es nuevo ingreso 
+                if ($titulos[$key]["idtitulo_presupuesto"] == "0") {
+                   
+                    if ($titulos[$key]["pertenece"]=="") {
+                        $per = "null";
+                    }else {
+                        
+                        $per = $arrayaux[$titulos[$key]["pertenece"]] ;
+                        
+                    }
+
+                    if ($titulos[$key]["origen"]=="1") {//del tcatalogo
+                        
+                       $this->consulta = "INSERT INTO ttitulo (descripcion, idcategoria_titulo, idusuario, idorganismo) VALUES ('".$titulos[$key]["descripcion"]."',".$titulos[$key]["idcategoria_titulo"].",".$vars["idusuario"].",".$vars["idorganismo"].")";//limpia los titulos sin partidas 
+                       $idt = $this->Agregar();
+                       
+
+                    }else {//del ttitulo
+                        
+                        $idt = $titulos[$key]["idd"];
+                    }
+
+                    $this->consulta = "INSERT INTO ttitulo_presupuesto (idsubpresupuesto,idtitulo, descripcion, orden, pertenece, idusuario, idorganismo) VALUES ($subpresupuesto,".$idt.",'".$titulos[$key]["descripcion"]."',".$titulos[$key]["orden"].",".$per.",".$vars["idusuario"].",".$vars["idorganismo"].") ";//limpia los titulos sin partidas 
+
+                    $idaux = $this->Agregar();
+
+
+                    $arrayaux[$titulos[$key]["idaux"]] = $idaux;
+                    
+                }else { //cuando se modifica
+                    
+                    if ($titulos[$key]["pertenece"]=="") {
+                        $per = "null";
+                    }else {  
+                        $per = $arrayaux[$titulos[$key]["pertenece"]] ;
+                    }
+
+                    if ((int)$titulos[$key]["partidas"] > 0) {
+
+                        $this->consulta = "call sp_actualizar_titulospresu (".$titulos[$key]["idtitulo_presupuesto"].",".$titulos[$key]["orden"].",".$per.")";
+                        $this->Ejecutar();
+                        $arrayaux[$titulos[$key]["idaux"]] = $titulos[$key]["idtitulo_presupuesto"];
+                       
+
+                    }else {
+                        
+                        $idt = $titulos[$key]["idd"];
+                        $this->consulta = "INSERT INTO ttitulo_presupuesto (idsubpresupuesto,idtitulo, descripcion, orden, pertenece, idusuario, idorganismo) VALUES ($subpresupuesto,".$idt.",'".$titulos[$key]["descripcion"]."',".$titulos[$key]["orden"].",".$per.",".$vars["idusuario"].",".$vars["idorganismo"].") ";//limpia los titulos sin partidas    
+                        $idaux = $this->Agregar();
+                        $arrayaux[$titulos[$key]["idaux"]]= $idaux;
+                        
+                    }     
+
+                }
+            }
+
+        } 
+
+        return $prueba;
+    }
+
+
+
     function __destruct() {  
     unset($this);
 	} 

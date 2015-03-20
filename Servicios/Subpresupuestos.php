@@ -63,6 +63,15 @@ $app->group('/Titulo', function () use ($app, $request, $Modelo) {
     else
         echo "{}";
     }); 
+    $app->post('/Guardar', function() use($request, $Modelo) {
+
+        $body = json_decode($request->getBody(), true);    
+        $resultado = $Modelo->GuardarHojaPre($body);    
+          
+           // $res = array('Estado' => $resultado, 'Mensaje' => $Modelo->mensaje, 'Codigo_Int' => 0, 'Codigo_String' => '');
+        //echo json_encode($res);
+        print_r($resultado);
+    });
 });
 
 /*$app->get("/Subpresupuesto", function () use ($request, $Modelo){
